@@ -4,10 +4,58 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: $red;
+  background-color: $red;
+  &__text{
+    background: none;
+    border: 3px solid white;
+    border-radius: 20px;
+    color: white;
+    padding: 2em 1em;
+    font-size: 35px;
+    text-align: center;
+  }
+  &__tree {
+    animation: showTree 1s ease-in-out forwards;
+    position: absolute;
+    top: 60px;
+    width: 250px;
+    height: 250px;
+    background-image: url("../../images/home/christmas-tree.png");
+    background-position: center center;
+    background-size: cover;
+
+    &:before {
+      content: '';
+      animation: none;
+      display: block;
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      background: white;
+      height: 250px;
+    }
+  }
+
+  .tree1 {
+    left: 20px;
+  }
+
+  .tree2 {
+    animation-delay: 0.2s;
+    right: 20%;
+  }
+
+  .tree3 {
+    animation-delay: 0.1s;
+    right: 50px;
+
+  }
 
   &__ground {
     position: absolute;
@@ -55,5 +103,23 @@
   }
   100% {
     transform: translateY(23%);
+  }
+}
+
+@keyframes showTree {
+  0% {
+    filter: drop-shadow(0 0 0 #000);
+    transform: translateY(-100%);
+  }
+
+  50% {
+    transform: translateY(10%) scale(1.05);
+  }
+  60% {
+    filter: drop-shadow(20px 0px 3px #000);
+  }
+  100% {
+    filter: drop-shadow(8px 0px 3px #000);
+    transform: translateY(0);
   }
 }
