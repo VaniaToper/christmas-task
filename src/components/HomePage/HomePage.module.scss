@@ -1,0 +1,59 @@
+@import "src/style-dev/vars";
+
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: $red;
+
+  &__ground {
+    position: absolute;
+    bottom: 0;
+    transform: translateY(23%);
+    width: 70%;
+    height: 100%;
+    background: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+
+    &__wrapper {
+      overflow-y: hidden;
+      bottom: 0;
+      position: absolute;
+      width: 100%;
+      height: 25%;
+    }
+
+    &_left {
+      animation: showGround 0.5s;
+      z-index: 1;
+      border-top-right-radius: 200%;
+    }
+
+    &_right {
+      animation: showGround 0.5s 0.1s;
+      right: 0;
+      border-top-left-radius: 200%;
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .home__ground__wrapper {
+    height: 35%;
+  }
+}
+
+@keyframes showGround {
+  0% {
+    transform: translateY(123%);
+  }
+  60% {
+    transform: translateY(13%);
+  }
+  100% {
+    transform: translateY(23%);
+  }
+}
