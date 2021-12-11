@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '../UI/button/Button';
 import s from './HomePage.module.scss';
+import {Link} from "react-router-dom";
 
 interface IProps {
 }
@@ -15,8 +16,10 @@ const HomePage: React.FC<IProps> = () => {
       <div className={[s.home__tree, s.tree1].join(' ')}/>
       <div className={[s.home__tree, s.tree2].join(' ')}/>
       <div className={[s.home__tree, s.tree3].join(' ')}/>
-      <div className={s.home__text}>Help grandma with decorating <br/> the Christmas tree</div>
-      <Button>Start</Button>
+      <div className={s.home__text}>Help grandma with decorating <br/> the
+        Christmas tree
+      </div>
+      <Link to={'/filters'}><Button>Start</Button></Link>
     </div>
   );
 };

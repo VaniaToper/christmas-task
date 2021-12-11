@@ -1,12 +1,21 @@
+import './style-dev/nullstyle.scss'
 import './App.module.scss';
-import HomePage from './components/HomePage/HomePage';
+import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
+import Filters from "./pages/Filters";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
-    return (
-        <div className="App">
-            <HomePage/>
-        </div>
-    );
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route path="/home" render={()=><Home/>} />
+        <Route path="/filters" render={()=><Filters/>}/>
+        <Route path="/NotFound" render={()=><NotFound/>}/>
+        <Redirect to='/NotFound' />
+      </Switch>
+    </BrowserRouter>
+  );
 }
 
 export default App;

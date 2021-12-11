@@ -9,21 +9,25 @@
   height: 100vh;
   overflow: hidden;
   background-color: $red;
-  &__text{
+  gap: 20px;
+
+  &__text {
+    margin: 0 20px;
     background: none;
     border: 3px solid white;
     border-radius: 20px;
     color: white;
-    padding: 2em 1em;
-    font-size: 35px;
+    padding: 1em;
+    font-size: 23px;
     text-align: center;
   }
+
   &__tree {
     animation: showTree 1s ease-in-out forwards;
     position: absolute;
     top: 60px;
-    width: 250px;
-    height: 250px;
+    width: 75px;
+    height: 75px;
     background-image: url("../../images/home/christmas-tree.png");
     background-position: center center;
     background-size: cover;
@@ -34,11 +38,11 @@
       display: block;
       position: absolute;
       top: -80px;
+      bottom: 0;
       left: 50%;
       transform: translateX(-50%);
       width: 2px;
       background: white;
-      height: 250px;
     }
   }
 
@@ -88,9 +92,29 @@
   }
 }
 
-@media screen and (min-width: 1440px) {
-  .home__ground__wrapper {
-    height: 35%;
+@media screen and (min-width: 1024px) {
+  .home {
+    &__text{
+      font-size: 27px  ;
+    }
+    &__tree {
+      width: 150px;
+      height: 150px;
+    }
+
+    &__ground__wrapper {
+      height: 35%;
+    }
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .home {
+    &__tree {
+      width: 250px;
+      height: 250px;
+    }
+
   }
 }
 
