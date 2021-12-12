@@ -4,6 +4,7 @@ import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
 import Filters from "./pages/Filters";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import {useState} from "react";
 
 const App = () => {
   return (

@@ -1,9 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
+import FiltersPage from "../components/FiltersPage/FiltersPage";
+import data from './data'
+interface IProps {
+}
 
-const Filters = () => {
+const Filters: React.FC<IProps> = () => {
+  const [cards, setCards] = useState([])
   return (
     <div>
-        Its filtters
+      <FiltersPage cards={data}/>
     </div>
   );
 };
