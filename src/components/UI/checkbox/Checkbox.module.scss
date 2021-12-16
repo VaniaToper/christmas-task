@@ -1,0 +1,65 @@
+.checkbox {
+  &__container {
+    position: relative;
+  }
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:checked ~ .checkbox__checkmark_color {
+      opacity: 1;
+      transform: translateY(-30%) scale(1);
+    }
+
+    &:checked ~ .checkbox__checkmark_fav {
+      background-image: url(http://localhost:3000/images/filters/assets/fav.png);
+    }
+  }
+
+  //&__checkmark {
+  //  &_color {
+  //    position: absolute;
+  //    top: 0;
+  //    left: 0;
+  //    width: 18px;
+  //    height: 18px;
+  //    background: red;
+  //    border: 2px solid #5f5f5f;
+  //    border-radius: 4px;
+  //    opacity: 0.5;
+  //    transform: translateY(-30%) scale(0.9);
+  //    transition: 0.2s;
+  //    cursor: pointer;
+  //  }
+  //
+  //  &_shape {
+  //    border: 1px solid black;
+  //    width: 50px;
+  //    height: 50px;
+  //    background: black !important;
+  //  }
+  //
+  //
+  //}
+}
+.card__fav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(40%, -40%);
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  background-color: #FFD600;
+  background-image: url("http://localhost:3000/images/filters/unlike.png");
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  &:checked{
+    background-image: url("http://localhost:3000/images/filters/like.png");
+  }
+}

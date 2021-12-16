@@ -1,12 +1,12 @@
 import React from 'react';
 import Button from '../UI/button/Button';
-import s from './HomePage.module.scss';
+import s from './Home.module.scss';
 import {Link} from "react-router-dom";
 
 interface IProps {
 }
 
-const HomePage: React.FC<IProps> = () => {
+const Home: React.FC<IProps> = () => {
   return (
     <div className={s.home}>
       <div className={s.home__ground__wrapper}>
@@ -24,4 +24,4 @@ const HomePage: React.FC<IProps> = () => {
   );
 };
 
-export default HomePage;
+export default Home;
