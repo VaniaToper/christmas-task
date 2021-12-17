@@ -1,9 +1,18 @@
 .parameters {
   &__wrapper {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    gap: 23px;
+  }
+
+  &__color {
+    display: flex;
+    gap: 0 23px;
+  }
+
+  &__shape {
+    display: flex;
+    gap: 0 40px;
   }
 }
 
