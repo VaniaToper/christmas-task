@@ -13,18 +13,8 @@ const Filters: React.FC<IProps> = ({data}) => {
   const [cards, setCards] = useState([])
   const [filter, setFilter] = useState([])
   const sortCard = useMemo((): any => {
-    data.forEach((card, index) => {
-      if (filter.includes(card.color)) return [data[index] = undefined, ...data]
-      console.log()
-      return data.push(card)
-    });
-    return data
+    return data.filter((card, index) => !filter.includes(card.color))
   }, [filter, cards])
-  const showFavs = useMemo(() => {
-    return sortCard
-  }, [filter])
-  // if (!showFavs.lenght) return <div>oops</div>
-
   return (
     <div>
       <header className={s.header}>
@@ -32,7 +22,7 @@ const Filters: React.FC<IProps> = ({data}) => {
         <FiltersBlock filter={filter} setFilter={setFilter}/>
       </header>
       <div className={s.card__wrapper}>
-        {showFavs.map((card, index) => (
+        {sortCard.map((card, index) => (
           <Card key={index} card={card}/>
         ))}
       </div>

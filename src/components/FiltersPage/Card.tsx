@@ -25,7 +25,7 @@ const Card: React.FC<IProps> = ({card}) => {
              return card.favorite = true
            }
            }/>
-      <Checkbox value={' a'} styleName={'card__fav'}/>
+      {/*<Checkbox value={' a'} styleName={'card__fav'}/>*/}
       <span className={s.card__title}>{card.name}</span>
       <div
         style={{backgroundImage: `url(http://localhost:3000/images/filters/assets/toys/${card.num}.png)`}}
