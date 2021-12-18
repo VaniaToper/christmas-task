@@ -5,7 +5,6 @@ import FiltersBlock from './FiltersBlock';
 import { ICard } from '../../types/ICard';
 
 
-
 interface IProps {
   data: ICard[];
 }
@@ -13,7 +12,7 @@ interface IProps {
 const Filters: React.FC<IProps> = ({ data }) => {
   const [filter, setFilter] = useState<string[]>([]);
   const sortCard = useMemo(() => {
-    return data.filter((card, index) => !filter.includes(card.color)&&!filter.includes(card.shape));
+    return data.filter((card, index) => !filter.includes(card.color) && !filter.includes(card.shape) && !filter.includes(card.size));
   }, [filter, data]);
   return (
     <div>

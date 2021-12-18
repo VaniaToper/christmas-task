@@ -35,18 +35,40 @@ const FiltersBlock: React.FC<IProps> = ({ setFilter, filter }) => {
       shapeFilter: [
         {
           value: 'ball',
+          name: 'ball',
         },
         {
           value: 'bell',
+          name: 'bell',
         },
         {
           value: 'cone',
+          name: 'cone',
         },
         {
           value: 'snowflake',
+          name: 'snowflake',
         },
         {
           value: 'toy',
+          name: 'toy',
+        },
+      ],
+      sizeFilter: [
+        {
+          value: 'large',
+          name:'ball2',
+          width: '100px',
+        },
+        {
+          value: 'medium',
+          name:'ball2',
+          width: '60px',
+        },
+        {
+          value: 'small',
+          name:'ball2',
+          width: '30px',
         },
       ],
     },
@@ -54,6 +76,7 @@ const FiltersBlock: React.FC<IProps> = ({ setFilter, filter }) => {
   const changeFilter = (checked: Boolean, value: string) => {
     if (!checked) return setFilter([...filter, value]);
     return setFilter(filter.filter((param) => {
+      console.log('true');
       return param !== value;
     }));
   };
@@ -75,11 +98,19 @@ const FiltersBlock: React.FC<IProps> = ({ setFilter, filter }) => {
             <div className={s.parameters__shape}>
               <span>Shape</span>
               {checkBoxes.shapeFilter.map(item => (
-                <Checkbox type={'shape'} key={item.value} value={item.value} />
+                <Checkbox type={'shape'} key={item.value} name={item.name} value={item.value} />
               ))}
             </div>
+
+            <div className={s.parameters__size}>
+              <span>Size</span>
+              {checkBoxes.sizeFilter.map(item => (
+                <Checkbox type={'size'} value={item.value}
+                          width={item.width}  key={item.value} name={item.name}/>
+              ))}
+            </div>
+
           </form>
-          <div className={s.parameters__size} />
           {/*<div className={s.parameters__fav}>*/}
           {/*  Favorites*/}
           {/*  <label className={s.checkbox__container}>*/}
