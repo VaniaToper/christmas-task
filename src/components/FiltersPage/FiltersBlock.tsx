@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import s from './FiltersBlock.module.scss';
 import Checkbox from '../UI/checkbox/Checkbox';
+import Slider from '../UI/slider/Slider';
+import Button from '../UI/button/baseButton/Button';
+import Select from '../UI/select/Select';
+
 
 interface IProps {
   filter: string[];
@@ -57,17 +61,17 @@ const FiltersBlock: React.FC<IProps> = ({ setFilter, filter }) => {
       sizeFilter: [
         {
           value: 'large',
-          name:'ball2',
+          name: 'ball2',
           width: '100px',
         },
         {
           value: 'medium',
-          name:'ball2',
+          name: 'ball2',
           width: '60px',
         },
         {
           value: 'small',
-          name:'ball2',
+          name: 'ball2',
           width: '30px',
         },
       ],
@@ -80,8 +84,11 @@ const FiltersBlock: React.FC<IProps> = ({ setFilter, filter }) => {
       return param !== value;
     }));
   };
+  const reset = () => {
+  };
   return (
     <div>
+
       <div className={s.parameters}>
         <div className={s.parameters__wrapper}>
           <form onChange={(e) => {
@@ -98,7 +105,8 @@ const FiltersBlock: React.FC<IProps> = ({ setFilter, filter }) => {
             <div className={s.parameters__shape}>
               <span>Shape</span>
               {checkBoxes.shapeFilter.map(item => (
-                <Checkbox type={'shape'} key={item.value} name={item.name} value={item.value} />
+                <Checkbox type={'shape'} key={item.value} name={item.name}
+                          value={item.value} />
               ))}
             </div>
 
@@ -106,11 +114,22 @@ const FiltersBlock: React.FC<IProps> = ({ setFilter, filter }) => {
               <span>Size</span>
               {checkBoxes.sizeFilter.map(item => (
                 <Checkbox type={'size'} value={item.value}
-                          width={item.width}  key={item.value} name={item.name}/>
+                          width={item.width} key={item.value}
+                          name={item.name} />
               ))}
             </div>
-
           </form>
+          <Select options={[
+            {
+              value: 'letter',
+              name: 'By Letter',
+            },
+            {
+              value: 'date',
+              name: 'By Date'
+            },
+          ]} title={'Sort By'} />
+          <button onClick={reset}>Reset</button>
           {/*<div className={s.parameters__fav}>*/}
           {/*  Favorites*/}
           {/*  <label className={s.checkbox__container}>*/}
