@@ -9,10 +9,11 @@ import Select from '../UI/select/Select';
 interface IProps {
   filter: string[];
   setFilter: any;
+  setSort: Function;
 }
 
 
-const FiltersBlock: React.FC<IProps> = ({ setFilter, filter }) => {
+const FiltersBlock: React.FC<IProps> = ({ setFilter, filter,  setSort }) => {
   const [checkBoxes] = useState({
       colorFilter: [
         {
@@ -77,6 +78,16 @@ const FiltersBlock: React.FC<IProps> = ({ setFilter, filter }) => {
       ],
     },
   );
+  const [options] = useState([
+    {
+      value: 'name',
+      title: 'By Letter',
+    },
+    {
+      value: 'year',
+      title: 'By Date',
+    },
+  ]);
   const changeFilter = (checked: Boolean, value: string) => {
     if (!checked) return setFilter([...filter, value]);
     return setFilter(filter.filter((param) => {
@@ -84,11 +95,11 @@ const FiltersBlock: React.FC<IProps> = ({ setFilter, filter }) => {
       return param !== value;
     }));
   };
+
   const reset = () => {
   };
   return (
     <div>
-
       <div className={s.parameters}>
         <div className={s.parameters__wrapper}>
           <form onChange={(e) => {
@@ -119,16 +130,8 @@ const FiltersBlock: React.FC<IProps> = ({ setFilter, filter }) => {
               ))}
             </div>
           </form>
-          <Select options={[
-            {
-              value: 'letter',
-              name: 'By Letter',
-            },
-            {
-              value: 'date',
-              name: 'By Date'
-            },
-          ]} title={'Sort By'} />
+          <Select onChange={setSort}
+                  options={options} title={'Sort By'} />
           <button onClick={reset}>Reset</button>
           {/*<div className={s.parameters__fav}>*/}
           {/*  Favorites*/}

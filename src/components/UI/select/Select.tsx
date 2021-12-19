@@ -4,9 +4,10 @@ import s from './Select.module.scss';
 interface IProps {
   title: string;
   options: any[];
+  onChange: any;
 }
 
-const Select: React.FC<IProps> = ({ title, options }) => {
+const Select: React.FC<IProps> = ({ title, options, onChange}) => {
   return (
     <form>
       <ul className={`${s.tickets_type__entrance} ${s.select}`}>
@@ -23,12 +24,13 @@ const Select: React.FC<IProps> = ({ title, options }) => {
                  htmlFor='select__close' />
           <ul className={s.select__options}>
             {options.map((option) => (
-              <li className={s.select__option}>
-                <input value={option.value} className={s.select__input}
+              <li key={option.value} className={s.select__option}>
+                <input onChange={e=>onChange(e.target.value)} value={option.value}
+                       className={s.select__input}
                        type='radio'
-                       name='tickets_type__entrance' id={option.title} />
+                       name='tickets_type__entrance' id={option.value} />
                 <label className={s.select__label}
-                       htmlFor={option.value}>{option.value}</label>
+                       htmlFor={option.value}>{option.title}</label>
               </li>
             ))}
 

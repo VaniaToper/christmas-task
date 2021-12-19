@@ -1,15 +1,12 @@
 import React from 'react';
-import Nouislider from "nouislider-react";
-import "nouislider/distribute/nouislider.css";
+import Nouislider from 'react-nouislider';
 
 const Slider = () => {
   return (
     <Nouislider
-      start={20}
-      range={{
-        min: 0,
-        max: 100
-      }}
+      range={{min: 0, max: 200}}
+      start={[0, 100]}
+      tooltips
     />
   );
 };
