@@ -47,7 +47,7 @@ const data = [
     shape: 'toy',
     color: 'red',
     size: 'medium',
-    favorite: true,
+    favorite: false,
   },
   {
     num: '6',
@@ -67,7 +67,7 @@ const data = [
     shape: 'ball',
     color: 'white',
     size: 'medium',
-    favorite: true,
+    favorite: false,
   },
   {
     num: '8',
@@ -127,7 +127,7 @@ const data = [
     shape: 'ball',
     color: 'blue',
     size: 'large',
-    favorite: true,
+    favorite: false,
   },
   {
     num: '14',
@@ -137,7 +137,7 @@ const data = [
     shape: 'ball',
     color: 'blue',
     size: 'large',
-    favorite: true,
+    favorite: false,
   },
   {
     num: '15',
@@ -157,7 +157,7 @@ const data = [
     shape: 'cone',
     color: 'blue',
     size: 'medium',
-    favorite: true,
+    favorite: false,
   },
   {
     num: '17',
@@ -197,7 +197,7 @@ const data = [
     shape: 'ball',
     color: 'red',
     size: 'medium',
-    favorite: true,
+    favorite: false,
   },
   {
     num: '21',
@@ -207,7 +207,7 @@ const data = [
     shape: 'ball',
     color: 'red',
     size: 'large',
-    favorite: true,
+    favorite: false,
   },
   {
     num: '22',
@@ -287,7 +287,7 @@ const data = [
     shape: 'ball',
     color: 'yellow',
     size: 'large',
-    favorite: true,
+    favorite: false,
   },
   {
     num: '30',
@@ -297,7 +297,7 @@ const data = [
     shape: 'ball',
     color: 'yellow',
     size: 'large',
-    favorite: true,
+    favorite: false,
   },
   {
     num: '31',
@@ -347,7 +347,7 @@ const data = [
     shape: 'toy',
     color: 'yellow',
     size: 'medium',
-    favorite: true,
+    favorite: false,
   },
   {
     num: '36',
@@ -437,7 +437,7 @@ const data = [
     shape: 'toy',
     color: 'red',
     size: 'medium',
-    favorite: true,
+    favorite: false,
   },
   {
     num: '45',
@@ -517,7 +517,7 @@ const data = [
     shape: 'ball',
     color: 'red',
     size: 'large',
-    favorite: true,
+    favorite: false,
   },
   {
     num: '53',
@@ -597,7 +597,7 @@ const data = [
     shape: 'toy',
     color: 'white',
     size: 'medium',
-    favorite: true,
+    favorite: false,
   },
 ];
 

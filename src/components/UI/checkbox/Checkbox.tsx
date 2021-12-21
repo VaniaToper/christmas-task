@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Checkbox.module.scss';
-
+import sprite from '../../../images/sprite.svg'
 
 interface IProps {
   value: string,
@@ -27,7 +27,7 @@ const Checkbox: React.FC<IProps> = ({
                                  style={{ background: background }} />}
       {(type === 'shape' || type === 'size') &&
         <svg  className={s.checkbox__checkmark_shape}>
-          <use style={{ transform: `scale(${width})` }} href={`http://localhost:3000/images/sprite.svg#${name}`} />
+          <use style={{ transform: `scale(${width})` }} href={`${sprite}#${name}`} />
         </svg>}
     </label>
   );

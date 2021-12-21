@@ -8,3 +8,8 @@ export interface ICard {
   size: string;
   favorite: boolean;
 }
+
+export interface IYearValue {
+  min: number,
+  max: number
+}

@@ -1,13 +1,11 @@
-import React from 'react';
-import Nouislider from 'react-nouislider';
+import React, { useState } from 'react';
+import InputRange from 'react-input-range';
+import 'react-input-range/lib/css/index.css';
 
-const Slider = () => {
+const Slider = ({onChange, value}) => {
   return (
-    <Nouislider
-      range={{min: 0, max: 200}}
-      start={[0, 100]}
-      tooltips
-    />
+    <InputRange onChange={e => onChange({ value: e })} value={value} maxValue={2020}
+                minValue={1940} />
   );
 };
 

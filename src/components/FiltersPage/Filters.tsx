@@ -1,11 +1,10 @@
-import React, { useMemo, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import s from './Filters.module.scss';
 import Card from './Card';
 import FiltersBlock from './FiltersBlock';
 import { ICard } from '../../types/ICard';
 import Input from '../UI/input/Input';
-import Select from '../UI/select/Select';
-
+import { FavContext } from '../../context';
 
 interface IProps {
   data: ICard[];
@@ -14,26 +13,45 @@ interface IProps {
 const Filters: React.FC<IProps> = ({ data }) => {
   const [cards, setCards] = useState([]);
   const [select, setSelect] = useState('');
-
+  const [fav, setFav] = useState(false);
   const [filter, setFilter] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const filterCard = useMemo(() => {
+  const [yearValue, setYearValue] = useState({
+    min: 1980,
+    max: 2010,
+  });
+  const { isFav, setIsFav } = useContext(FavContext);
+
+  // const favCards = useMemo(() => {
+  //   if (fav) return data = isFav
+  // }, [fav]);
+  const filterCards = useMemo(() => {
     return data.filter((card, index) => !filter.includes(card.color) && !filter.includes(card.shape) && !filter.includes(card.size));
   }, [filter, data]);
-  const searchCard = useMemo(() => {
-    console.log('asdsa');
-    return filterCard.filter(card => card.name.toLowerCase().includes(searchQuery.toLowerCase()));
-  }, [searchQuery, filterCard]);
+
+  const searchCards = useMemo(() => {
+    return filterCards.filter(card => card.name.toLowerCase().includes(searchQuery.toLowerCase()));
+  }, [searchQuery, filterCards]);
+
+  const filterByYear = useMemo(() => {
+    return searchCards.filter(card => parseInt(card.year) >= yearValue.min);
+  }, [yearValue, searchCards]);
+
   const sortCard = useMemo(() => {
-    console.log(searchCard);
-    if (select) return [...searchCard].sort((a, b) => a[select].localeCompare(b[select]));
-    return searchCard;
-  }, [select, searchCard]);
+    if (select) return [...filterByYear].sort((a, b) => a[select].localeCompare(b[select]));
+    return filterByYear;
+  }, [select, filterByYear]);
+
+
+
   return (
     <div>
+      {/*<Colorpicker />*/}
       <header className={s.header}>
         <span className={s.header__title}>Filters</span>
-        <FiltersBlock setSort={setSelect} filter={filter}
+        <FiltersBlock setFav={setFav} yearValue={yearValue}
+                      setYearValue={setYearValue}
+                      setSort={setSelect} filter={filter}
                       setFilter={setFilter} />
       </header>
       <Input autoFocus={true} placeholder={'Search...'} value={searchQuery}
@@ -41,11 +59,10 @@ const Filters: React.FC<IProps> = ({ data }) => {
       <div className={s.card__wrapper}>
         {sortCard.length
           ? sortCard.map((card, index) => (
-            <Card key={index} card={card} />))
+            <Card key={index} value={fav} onChange={setFav} card={card} />))
           : <span>Not Found</span>
         }
       </div>
-
     </div>
   );
 };

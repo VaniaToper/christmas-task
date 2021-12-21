@@ -1,19 +1,30 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import s from './FiltersBlock.module.scss';
 import Checkbox from '../UI/checkbox/Checkbox';
-import Slider from '../UI/slider/Slider';
 import Button from '../UI/button/baseButton/Button';
 import Select from '../UI/select/Select';
-
+import Slider from '../UI/slider/Slider';
+import { IYearValue } from '../../types/ICard';
 
 interface IProps {
   filter: string[];
-  setFilter: any;
-  setSort: Function;
+  setFilter: React.Dispatch<React.SetStateAction<string[]>>;
+  setSort: React.Dispatch<React.SetStateAction<string>>;
+  yearValue: IYearValue
+  setYearValue: React.Dispatch<React.SetStateAction<IYearValue>>;
+  setFav: React.Dispatch<React.SetStateAction<boolean>>;
+
 }
 
 
-const FiltersBlock: React.FC<IProps> = ({ setFilter, filter,  setSort }) => {
+const FiltersBlock: React.FC<IProps> = ({
+                                          setFilter,
+                                          filter,
+                                          setSort,
+                                          setYearValue,
+                                          yearValue,
+                                          setFav,
+                                        }) => {
   const [checkBoxes] = useState({
       colorFilter: [
         {
@@ -76,6 +87,9 @@ const FiltersBlock: React.FC<IProps> = ({ setFilter, filter,  setSort }) => {
           width: '30px',
         },
       ],
+      favFilter: [
+        {},
+      ],
     },
   );
   const [options] = useState([
@@ -91,58 +105,62 @@ const FiltersBlock: React.FC<IProps> = ({ setFilter, filter,  setSort }) => {
   const changeFilter = (checked: Boolean, value: string) => {
     if (!checked) return setFilter([...filter, value]);
     return setFilter(filter.filter((param) => {
-      console.log('true');
       return param !== value;
     }));
   };
 
   const reset = () => {
   };
-  return (
-    <div>
-      <div className={s.parameters}>
-        <div className={s.parameters__wrapper}>
-          <form onChange={(e) => {
-            const target = e.target as HTMLInputElement;
-            changeFilter(target.checked, target.value);
-          }} className={s.parameters__wrapper}>
-            <div className={s.parameters__color}>
-              <span>Color</span>
-              {checkBoxes.colorFilter.map(item => (
-                <Checkbox type={'color'} key={item.value} value={item.value}
-                          background={item.background} />
-              ))}
-            </div>
-            <div className={s.parameters__shape}>
-              <span>Shape</span>
-              {checkBoxes.shapeFilter.map(item => (
-                <Checkbox type={'shape'} key={item.value} name={item.name}
-                          value={item.value} />
-              ))}
-            </div>
 
-            <div className={s.parameters__size}>
-              <span>Size</span>
-              {checkBoxes.sizeFilter.map(item => (
-                <Checkbox type={'size'} value={item.value}
-                          width={item.width} key={item.value}
-                          name={item.name} />
-              ))}
-            </div>
-          </form>
-          <Select onChange={setSort}
-                  options={options} title={'Sort By'} />
-          <button onClick={reset}>Reset</button>
-          {/*<div className={s.parameters__fav}>*/}
-          {/*  Favorites*/}
-          {/*  <label className={s.checkbox__container}>*/}
-          {/*    <input type='checkbox' className={s.checkbox__input} />*/}
-          {/*    <span className={s.checkbox__checkmark_fav} />*/}
-          {/*  </label>*/}
-          {/*</div>*/}
+
+  return (
+    <div className={s.parameters}>
+      <form onChange={(e) => {
+        const target = e.target as HTMLInputElement;
+        changeFilter(target.checked, target.value);
+      }} className={s.parameters__wrapper}>
+        <div className={s.parameters__item}>
+          <span>Color</span>
+          <div className={s.parameters__color_checkbox}>
+            {checkBoxes.colorFilter.map(item => (
+              <Checkbox type={'color'} key={item.value} value={item.value}
+                        background={item.background} />
+            ))}
+          </div>
+        </div>
+        <div className={s.parameters__item}>
+          <span>Shape</span>
+          <div className={s.parameters__shape_checkbox}>
+            {checkBoxes.shapeFilter.map(item => (
+              <Checkbox type={'shape'} key={item.value} name={item.name}
+                        value={item.value} />
+            ))}
+          </div>
         </div>
 
-      </div>
+        <div className={s.parameters__item}>
+          <span>Size</span>
+          <div className={s.parameters__size_checkbox}>
+            {checkBoxes.sizeFilter.map(item => (
+              <Checkbox type={'size'} value={item.value}
+                        width={item.width} key={item.value}
+                        name={item.name} />
+            ))}
+          </div>
+        </div>
+        <div className={s.parameters__fav}>
+          Favorites
+          <label  className={s.checkbox__container}>
+            <input onChange={(e)=> setFav(e.target.checked)} type='checkbox' className={s.checkbox__input} />
+            <span className={s.checkbox__checkmark_fav} />
+          </label>
+        </div>
+      </form>
+      <Select onChange={setSort}
+              options={options} title={'Sort By'} />
+      <button onClick={reset}>Reset</button>
+
+      <Slider onChange={setYearValue} value={yearValue} />
     </div>
   );
 };
