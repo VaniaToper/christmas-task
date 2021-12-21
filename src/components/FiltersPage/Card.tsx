@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
 import s from './Card.module.scss';
-import { ICard } from '../../types/ICard';
+import { ITypes } from '../../types/ITypes';
 import { FavContext } from '../../context';
 
 interface IProps {
-  card: ICard;
+  card: ITypes;
   onChange: React.Dispatch<React.SetStateAction<boolean>>;
   value: boolean;
 }

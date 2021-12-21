@@ -2,17 +2,18 @@ import React, { useContext, useMemo, useState } from 'react';
 import s from './Filters.module.scss';
 import Card from './Card';
 import FiltersBlock from './FiltersBlock';
-import { ICard, ISliderValue } from '../../types/ICard';
+import { ITypes, ISliderValue } from '../../types/ITypes';
 import Input from '../UI/input/Input';
 import { FavContext } from '../../context';
 
 interface IProps {
-  data: ICard[];
+  data: ITypes[];
 }
 
 const Filters: React.FC<IProps> = ({ data }) => {
   const [cards, setCards] = useState([]);
-  const [select, setSelect] = useState('');
+  const [select, setSelect] = useState<string>('');
+  const [selectType, setSelectType] = useState<string>('');
   const [fav, setFav] = useState(false);
   const [filter, setFilter] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -59,9 +60,10 @@ const Filters: React.FC<IProps> = ({ data }) => {
   }, [countValue, filterByYear]);
 
   const sortCard = useMemo(() => {
-    if (select) return [...filterByCount].sort((a, b) => a[select].localeCompare(b[select]));
+    if (selectType==='normal') return [...filterByCount].sort((a, b) => a[select].localeCompare(b[select]));
+    if (selectType==='reverse') return [...filterByCount].sort((a, b) => b[select].localeCompare(a[select]));
     return filterByCount;
-  }, [select, filterByCount]);
+  }, [select, selectType, filterByCount]);
 
 
   return (
@@ -69,11 +71,13 @@ const Filters: React.FC<IProps> = ({ data }) => {
       <span>Таск не доделан, если можете, то проверьте  пожалуйста на 1 день позже</span>
       <header className={s.header}>
         <span className={s.header__title}>Filters</span>
-        <FiltersBlock countValue={countValue} setCountValue={setCountValue}
-                      fav={fav} setFav={setFav} yearValue={yearValue}
-                      setYearValue={setYearValue}
-                      setSort={setSelect} filter={filter}
-                      setFilter={setFilter} />
+        <FiltersBlock
+          setSelectType={setSelectType}
+          countValue={countValue} setCountValue={setCountValue}
+          setFav={setFav} yearValue={yearValue}
+          setYearValue={setYearValue}
+          setSort={setSelect} filter={filter}
+          setFilter={setFilter} />
       </header>
 
       <div className={s.card__wrapper}>

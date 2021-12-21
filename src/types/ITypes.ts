@@ -1,4 +1,4 @@
-export interface ICard {
+export interface ITypes {
   num: string;
   name: string;
   count: string;
@@ -12,4 +12,11 @@ export interface ICard {
 export interface ISliderValue {
   min: number,
   max: number
+}
+
+export interface IOptions {
+  title: string,
+  value: string,
+  id: string
+  type: string
 }

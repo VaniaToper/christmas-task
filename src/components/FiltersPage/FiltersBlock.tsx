@@ -3,7 +3,7 @@ import s from './FiltersBlock.module.scss';
 import Checkbox from '../UI/checkbox/Checkbox';
 import Select from '../UI/select/Select';
 import Slider from '../UI/slider/Slider';
-import { ISliderValue } from '../../types/ICard';
+import { ISliderValue } from '../../types/ITypes';
 
 interface IProps {
   filter: string[];
@@ -14,7 +14,7 @@ interface IProps {
   yearValue: ISliderValue;
   setYearValue: React.Dispatch<React.SetStateAction<ISliderValue>>;
   setFav: React.Dispatch<React.SetStateAction<boolean>>;
-  fav: boolean;
+  setSelectType: React.Dispatch<React.SetStateAction<string>>;
 }
 
 
@@ -25,9 +25,9 @@ const FiltersBlock: React.FC<IProps> = ({
                                           setYearValue,
                                           yearValue,
                                           setFav,
-                                          fav,
                                           countValue,
                                           setCountValue,
+                                          setSelectType,
                                         }) => {
   const [checkBoxes] = useState({
       colorFilter: [
@@ -96,12 +96,30 @@ const FiltersBlock: React.FC<IProps> = ({
   );
   const [options] = useState([
     {
+      id: '0',
       value: 'name',
       title: 'By Letter',
+      type: 'normal',
     },
     {
+      id: '1',
       value: 'year',
       title: 'By Date',
+      type: 'normal',
+    },
+  ]);
+  const [optionsReverse] = useState([
+    {
+      id: '3',
+      value: 'name',
+      title: 'By Letter Reverse',
+      type: 'reverse',
+    },
+    {
+      id: '4',
+      value: 'year',
+      title: 'By Date Reverse',
+      type: 'reverse',
     },
   ]);
   const changeFilter = (checked: Boolean, value: string) => {
@@ -150,13 +168,20 @@ const FiltersBlock: React.FC<IProps> = ({
             ))}
           </div>
         </div>
-        <form className={s.parameters__filter_item}>
+        <div className={s.parameters__filter_item}>
           Favorites
           <Checkbox onChange={setFav} value={'fav'} type={'fav'} />
-        </form>
+        </div>
       </form>
-      <Select onChange={setSort}
-              options={options} title={'Sort By'} />
+      <div className={s.parameters__selects}>
+        <Select setType={setSelectType} valueClose={'close'} valueOpen={'open'}
+                onChange={setSort}
+                options={options} title={'Sort By'} />
+        <Select setType={setSelectType} valueClose={'reverseClose'}
+                valueOpen={'reverseOpen'}
+                onChange={setSort}
+                options={optionsReverse} title={'Sort By'} />
+      </div>
       <div className={s.parameters__sort}>
         <Slider onChange={setYearValue} value={yearValue} min={1940}
                 max={2020} />
