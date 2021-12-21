@@ -4,6 +4,7 @@ import Checkbox from '../UI/checkbox/Checkbox';
 import Select from '../UI/select/Select';
 import Slider from '../UI/slider/Slider';
 import { ISliderValue } from '../../types/ITypes';
+import ResetButton from '../UI/button/resetButton/ResetButton';
 
 interface IProps {
   filter: string[];
@@ -174,7 +175,8 @@ const FiltersBlock: React.FC<IProps> = ({
         </div>
       </form>
       <div className={s.parameters__selects}>
-        <Select zIndex={'5'} setType={setSelectType} valueClose={'close'} valueOpen={'open'}
+        <Select zIndex={'5'} setType={setSelectType} valueClose={'close'}
+                valueOpen={'open'}
                 onChange={setSort}
                 options={options} title={'Sort By'} />
         <Select zIndex={'4'} setType={setSelectType} valueClose={'reverseClose'}
@@ -183,12 +185,15 @@ const FiltersBlock: React.FC<IProps> = ({
                 options={optionsReverse} title={'Sort By'} />
       </div>
       <div className={s.parameters__sort}>
-        <Slider onChange={setYearValue} value={yearValue} min={1940}
-                max={2020} />
-        <Slider onChange={setCountValue} value={countValue} min={1} max={12} />
-        <button className={s.parameters__sort_button} onClick={reset}>Reset
-        </button>
-
+        <div className={s.parameters__sort_sliders}>
+          <Slider onChange={setYearValue} value={yearValue} min={1940}
+                  max={2020} />
+          <Slider onChange={setCountValue} value={countValue} min={1} max={12} />
+        </div>
+        <ResetButton rangeValue={{
+          year: setYearValue,
+          count: setCountValue,
+        }} />
       </div>
     </div>
   );

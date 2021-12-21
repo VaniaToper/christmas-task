@@ -42,11 +42,12 @@
     flex-direction: column;
     min-width: 200px;
     gap: 15px;
-
-    &_button {
-      margin: 20px auto;
-      width: 100px;
+    &_sliders{
+      display: flex;
+      flex-direction: column;
+      gap: 40px ;
     }
+
   }
 
   &__selects {
@@ -79,7 +80,7 @@
       &:after {
         content: '';
         position: absolute;
-        top: -18px;
+        top: -6px;
         left: -46px;
         width: 2px;
         height: 140px;
