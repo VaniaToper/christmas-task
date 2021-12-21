@@ -3,14 +3,16 @@ import s from './FiltersBlock.module.scss';
 import Checkbox from '../UI/checkbox/Checkbox';
 import Select from '../UI/select/Select';
 import Slider from '../UI/slider/Slider';
-import { IYearValue } from '../../types/ICard';
+import { ISliderValue } from '../../types/ICard';
 
 interface IProps {
   filter: string[];
   setFilter: React.Dispatch<React.SetStateAction<string[]>>;
+  setCountValue: React.Dispatch<React.SetStateAction<ISliderValue>>;
+  countValue: ISliderValue;
   setSort: React.Dispatch<React.SetStateAction<string>>;
-  yearValue: IYearValue;
-  setYearValue: React.Dispatch<React.SetStateAction<IYearValue>>;
+  yearValue: ISliderValue;
+  setYearValue: React.Dispatch<React.SetStateAction<ISliderValue>>;
   setFav: React.Dispatch<React.SetStateAction<boolean>>;
   fav: boolean;
 }
@@ -24,6 +26,8 @@ const FiltersBlock: React.FC<IProps> = ({
                                           yearValue,
                                           setFav,
                                           fav,
+                                          countValue,
+                                          setCountValue,
                                         }) => {
   const [checkBoxes] = useState({
       colorFilter: [
@@ -154,8 +158,9 @@ const FiltersBlock: React.FC<IProps> = ({
       <Select onChange={setSort}
               options={options} title={'Sort By'} />
       <div className={s.parameters__sort}>
-        <Slider onChange={setYearValue} value={yearValue} />
-        <Slider onChange={setYearValue} value={yearValue} />
+        <Slider onChange={setYearValue} value={yearValue} min={1940}
+                max={2020} />
+        <Slider onChange={setCountValue} value={countValue} min={1} max={12} />
         <button className={s.parameters__sort_button} onClick={reset}>Reset
         </button>
 

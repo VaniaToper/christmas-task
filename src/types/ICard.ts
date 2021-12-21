@@ -9,7 +9,7 @@ export interface ICard {
   favorite: boolean;
 }
 
-export interface IYearValue {
+export interface ISliderValue {
   min: number,
   max: number
 }

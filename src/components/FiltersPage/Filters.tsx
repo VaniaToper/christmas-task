@@ -2,7 +2,7 @@ import React, { useContext, useMemo, useState } from 'react';
 import s from './Filters.module.scss';
 import Card from './Card';
 import FiltersBlock from './FiltersBlock';
-import { ICard } from '../../types/ICard';
+import { ICard, ISliderValue } from '../../types/ICard';
 import Input from '../UI/input/Input';
 import { FavContext } from '../../context';
 
@@ -16,9 +16,13 @@ const Filters: React.FC<IProps> = ({ data }) => {
   const [fav, setFav] = useState(false);
   const [filter, setFilter] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [yearValue, setYearValue] = useState({
-    min: 1980,
-    max: 2010,
+  const [countValue, setCountValue] = useState<ISliderValue>({
+    min: 1,
+    max: 12,
+  });
+  const [yearValue, setYearValue] = useState<ISliderValue>({
+    min: 1940,
+    max: 2020,
   });
   const { isFav, setIsFav } = useContext(FavContext);
   const setFavorite = () => {
@@ -47,13 +51,17 @@ const Filters: React.FC<IProps> = ({ data }) => {
   }, [searchQuery, filterCards]);
 
   const filterByYear = useMemo(() => {
-    return searchCards.filter(card => parseInt(card.year) >= 1940);
+    return searchCards.filter(card => parseInt(card.year) >= yearValue.min && parseInt(card.year) <= yearValue.max);
   }, [yearValue, searchCards]);
 
+  const filterByCount = useMemo(() => {
+    return filterByYear.filter(card => parseInt(card.count) >= countValue.min && parseInt(card.count) <= countValue.max);
+  }, [countValue, filterByYear]);
+
   const sortCard = useMemo(() => {
-    if (select) return [...filterByYear].sort((a, b) => a[select].localeCompare(b[select]));
-    return filterByYear;
-  }, [select, filterByYear]);
+    if (select) return [...filterByCount].sort((a, b) => a[select].localeCompare(b[select]));
+    return filterByCount;
+  }, [select, filterByCount]);
 
 
   return (
@@ -61,7 +69,8 @@ const Filters: React.FC<IProps> = ({ data }) => {
       <span>Таск не доделан, если можете, то проверьте  пожалуйста на 1 день позже</span>
       <header className={s.header}>
         <span className={s.header__title}>Filters</span>
-        <FiltersBlock fav={fav} setFav={setFav} yearValue={yearValue}
+        <FiltersBlock countValue={countValue} setCountValue={setCountValue}
+                      fav={fav} setFav={setFav} yearValue={yearValue}
                       setYearValue={setYearValue}
                       setSort={setSelect} filter={filter}
                       setFilter={setFilter} />
