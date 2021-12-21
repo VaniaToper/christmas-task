@@ -174,10 +174,10 @@ const FiltersBlock: React.FC<IProps> = ({
         </div>
       </form>
       <div className={s.parameters__selects}>
-        <Select setType={setSelectType} valueClose={'close'} valueOpen={'open'}
+        <Select zIndex={'5'} setType={setSelectType} valueClose={'close'} valueOpen={'open'}
                 onChange={setSort}
                 options={options} title={'Sort By'} />
-        <Select setType={setSelectType} valueClose={'reverseClose'}
+        <Select zIndex={'4'} setType={setSelectType} valueClose={'reverseClose'}
                 valueOpen={'reverseOpen'}
                 onChange={setSort}
                 options={optionsReverse} title={'Sort By'} />

@@ -9,6 +9,7 @@ interface IProps {
   setType: React.Dispatch<React.SetStateAction<string>>;
   valueOpen: string;
   valueClose: string;
+  zIndex: string;
 }
 
 const Select: React.FC<IProps> = ({
@@ -18,9 +19,10 @@ const Select: React.FC<IProps> = ({
                                     setType,
                                     valueClose,
                                     valueOpen,
+                                    zIndex,
                                   }) => {
   return (
-    <form>
+    <form style={{ zIndex: zIndex }}>
       <ul className={`${s.tickets_type__entrance} ${s.select}`}>
         <li>
           <input type='radio' className={s.select__close}
@@ -37,8 +39,8 @@ const Select: React.FC<IProps> = ({
             {options.map((option) => (
               <li key={option.id} className={s.select__option}>
                 <input onChange={e => {
-                  onChange(e.target.value)
-                  setType(option.type)
+                  onChange(e.target.value);
+                  setType(option.type);
                 }}
                        value={option.value}
                        className={s.select__input}
