@@ -2,17 +2,16 @@ import React, { useContext, useMemo, useState } from 'react';
 import s from './Filters.module.scss';
 import Card from './Card';
 import FiltersBlock from './FiltersBlock';
-import { ITypes, ISliderValue } from '../../types/ITypes';
+import { ICards, ISliderValue } from '../../types/ITypes';
 import Input from '../UI/input/Input';
 import { FavContext } from '../../context';
 import Modal from '../UI/modal/Modal';
 
 interface IProps {
-  data: ITypes[];
+  data: ICards[];
 }
 
 const Filters: React.FC<IProps> = ({ data }) => {
-  const [cards, setCards] = useState([]);
   const [select, setSelect] = useState<string>('');
   const [selectType, setSelectType] = useState<string>('');
   const [fav, setFav] = useState(false);
@@ -36,7 +35,7 @@ const Filters: React.FC<IProps> = ({ data }) => {
     }
     return data;
   };
-  const favCards = useMemo((): any => {
+  const favCards = useMemo(() => {
     if (fav) {
       setFavorite();
       return data.filter(card => card.favorite);

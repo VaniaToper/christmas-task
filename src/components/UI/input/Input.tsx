@@ -3,7 +3,7 @@ import s from './Input.module.scss';
 
 interface IProps {
   value: string;
-  onChange: any;
+  onChange: React.Dispatch<React.SetStateAction<string>>;
   placeholder?: string;
   autoFocus: boolean;
 }

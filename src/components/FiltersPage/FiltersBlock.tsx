@@ -3,7 +3,7 @@ import s from './FiltersBlock.module.scss';
 import Checkbox from '../UI/checkbox/Checkbox';
 import Select from '../UI/select/Select';
 import Slider from '../UI/slider/Slider';
-import { ISliderValue } from '../../types/ITypes';
+import { IOptions, ISliderValue } from '../../types/ITypes';
 import ResetButton from '../UI/button/resetButton/ResetButton';
 
 interface IProps {
@@ -95,7 +95,7 @@ const FiltersBlock: React.FC<IProps> = ({
 
     },
   );
-  const [options] = useState([
+  const [options] = useState<IOptions[]>([
     {
       id: '0',
       value: 'name',
@@ -109,7 +109,7 @@ const FiltersBlock: React.FC<IProps> = ({
       type: 'normal',
     },
   ]);
-  const [optionsReverse] = useState([
+  const [optionsReverse] = useState<IOptions[]>([
     {
       id: '3',
       value: 'name',
@@ -188,7 +188,8 @@ const FiltersBlock: React.FC<IProps> = ({
         <div className={s.parameters__sort_sliders}>
           <Slider onChange={setYearValue} value={yearValue} min={1940}
                   max={2020} />
-          <Slider onChange={setCountValue} value={countValue} min={1} max={12} />
+          <Slider onChange={setCountValue} value={countValue} min={1}
+                  max={12} />
         </div>
         <ResetButton resetSliders={{
           year: setYearValue,

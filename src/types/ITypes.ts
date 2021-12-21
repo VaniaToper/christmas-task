@@ -1,4 +1,4 @@
-export interface ITypes {
+export interface ICards {
   num: string;
   name: string;
   count: string;
@@ -20,3 +20,4 @@ export interface IOptions {
   id: string
   type: string
 }
+
