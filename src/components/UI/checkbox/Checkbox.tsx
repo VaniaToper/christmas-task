@@ -1,14 +1,13 @@
 import React from 'react';
 import s from './Checkbox.module.scss';
-import sprite from '../../../images/sprite.svg'
+import sprite from '../../../images/sprite.svg';
 
 interface IProps {
   value: string,
   background?: string
-  props?: any
   type: string
   width?: string
-  name?:string
+  name?: string
 }
 
 const Checkbox: React.FC<IProps> = ({
@@ -17,18 +16,21 @@ const Checkbox: React.FC<IProps> = ({
                                       background,
                                       width,
                                       name,
-                                      ...props
                                     }) => {
+
   return (
     <label className={s.checkbox__container}>
-      <input defaultChecked={true} value={value} type='checkbox'
+      <input defaultChecked={type !== 'fav'} value={value} type='checkbox'
              className={s.checkbox__input} />
       {type === 'color' && <span className={s.checkbox__checkmark_color}
                                  style={{ background: background }} />}
       {(type === 'shape' || type === 'size') &&
-        <svg  className={s.checkbox__checkmark_shape}>
-          <use style={{ transform: `scale(${width})` }} href={`${sprite}#${name}`} />
+        <svg className={s.checkbox__checkmark_shape}>
+          <use style={{ transform: `scale(${width})` }}
+               href={`${sprite}#${name}`} />
         </svg>}
+      {type === 'fav' &&
+        <span className={s.checkbox__checkmark_fav} />}
     </label>
   );
 };

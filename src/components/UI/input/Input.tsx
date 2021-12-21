@@ -1,15 +1,25 @@
 import React from 'react';
-import s from './Input.module.scss'
+import s from './Input.module.scss';
 
-interface IProps{
-  value:string
-  onChange:any
-  placeholder?:string
-  autoFocus:boolean
+interface IProps {
+  value: string;
+  onChange: any;
+  placeholder?: string;
+  autoFocus: boolean;
 }
-const Input: React.FC<IProps> = ({value,onChange,placeholder, autoFocus}) => {
+
+const Input: React.FC<IProps> = ({
+                                   value,
+                                   onChange,
+                                   placeholder,
+                                   autoFocus,
+                                 }) => {
   return (
-    <input placeholder={placeholder} autoFocus={autoFocus} className={s.input} onChange={onChange} value={value} type='search' />
+    <form className={s.search_box}>
+      <input placeholder={placeholder} autoFocus={autoFocus} className={s.input}
+             onChange={(e)=>onChange(e.target.value)} value={value} type='text' />
+      <button onClick={()=>onChange('')} type='reset' />
+    </form>
   );
 };
 

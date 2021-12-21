@@ -1,37 +1,83 @@
+@import "src/style-dev/vars";
+
 .parameters {
   display: flex;
   flex-direction: column;
   gap: 50px;
   justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
 
-  &__wrapper {
+  &__filter {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    &_item {
+      display: flex;
+      gap: 0 23px;
+      width: 100%;
+    }
+
+    &_color {
+      display: flex;
+      gap: 25px;
+    }
+
+    &_shape {
+      display: flex;
+      gap: 30px;
+    }
+
+    &_size {
+      display: flex;
+      gap: 30px;
+    }
   }
 
-  &__item {
+  &__sort {
     display: flex;
-    gap: 0 23px;
-    width: 100%;
+    flex-direction: column;
+    min-width: 200px;
+    gap: 15px;
 
+    &_button {
+      margin: 20px auto;
+      width: 100px;
+    }
   }
 
-  &__color_checkbox {
-    display: flex;
-    gap: 25px;
-  }
-
-  &__shape_checkbox {
-    display: flex;
-    gap: 30px;
-  }
-
-  &__size_checkbox {
-    display: flex;
-    gap: 30px;
-  }
 }
 
+@media screen and (min-width: 1024px) {
+  .parameters {
+    flex-direction: row;
+    gap: 100px;
+    &__filter{
+      &:after{
+        content: '';
+        position: absolute;
+        right: -46px;
+        width: 2px;
+        height: 140px;
+        background: $darkRed;
+        border-radius: 55px;
+      }
+    }
+    &__sort{
+      position: relative;
+      &:after{
+        content: '';
+        position: absolute;
+        top: -18px;
+        left: -46px;
+        width: 2px;
+        height: 140px;
+        background: $darkRed;
+        border-radius: 55px;
+      }
+    }
+  }
+}

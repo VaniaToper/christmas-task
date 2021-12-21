@@ -30,7 +30,8 @@ const Filters: React.FC<IProps> = ({ data }) => {
   }, [filter, data]);
 
   const searchCards = useMemo(() => {
-    return filterCards.filter(card => card.name.toLowerCase().includes(searchQuery.toLowerCase()));
+    if (searchQuery) return filterCards.filter(card => card.name.toLowerCase().includes(searchQuery.toLowerCase()));
+    else return filterCards
   }, [searchQuery, filterCards]);
 
   const filterByYear = useMemo(() => {
@@ -47,16 +48,18 @@ const Filters: React.FC<IProps> = ({ data }) => {
   return (
     <div>
       {/*<Colorpicker />*/}
+      <span>Таск не доделан, если можете, то проверьте  пожалуйста на 1 день позже</span>
       <header className={s.header}>
         <span className={s.header__title}>Filters</span>
-        <FiltersBlock setFav={setFav} yearValue={yearValue}
+        <FiltersBlock fav={fav} setFav={setFav} yearValue={yearValue}
                       setYearValue={setYearValue}
                       setSort={setSelect} filter={filter}
                       setFilter={setFilter} />
       </header>
-      <Input autoFocus={true} placeholder={'Search...'} value={searchQuery}
-             onChange={(e) => setSearchQuery(e.target.value)} />
+
       <div className={s.card__wrapper}>
+        <Input autoFocus={true} placeholder={'Search...'} value={searchQuery}
+               onChange={setSearchQuery} />
         {sortCard.length
           ? sortCard.map((card, index) => (
             <Card key={index} value={fav} onChange={setFav} card={card} />))

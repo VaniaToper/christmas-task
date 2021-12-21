@@ -10,7 +10,7 @@ import { FavContext } from './context';
 
 const App: React.FC = () => {
   const [isFav, setIsFav] = useState([]);
-  console.log('Таск не доделан, проверте пожалуйста на 1 день позже');
+  console.log('Таск не доделан, проверьте  пожалуйста на 1 день позже');
   return (
     <FavContext.Provider value={{
       isFav,

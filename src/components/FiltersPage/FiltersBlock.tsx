@@ -10,10 +10,10 @@ interface IProps {
   filter: string[];
   setFilter: React.Dispatch<React.SetStateAction<string[]>>;
   setSort: React.Dispatch<React.SetStateAction<string>>;
-  yearValue: IYearValue
+  yearValue: IYearValue;
   setYearValue: React.Dispatch<React.SetStateAction<IYearValue>>;
   setFav: React.Dispatch<React.SetStateAction<boolean>>;
-
+  fav: boolean;
 }
 
 
@@ -24,6 +24,7 @@ const FiltersBlock: React.FC<IProps> = ({
                                           setYearValue,
                                           yearValue,
                                           setFav,
+                                          fav,
                                         }) => {
   const [checkBoxes] = useState({
       colorFilter: [
@@ -87,9 +88,7 @@ const FiltersBlock: React.FC<IProps> = ({
           width: '30px',
         },
       ],
-      favFilter: [
-        {},
-      ],
+
     },
   );
   const [options] = useState([
@@ -118,19 +117,19 @@ const FiltersBlock: React.FC<IProps> = ({
       <form onChange={(e) => {
         const target = e.target as HTMLInputElement;
         changeFilter(target.checked, target.value);
-      }} className={s.parameters__wrapper}>
-        <div className={s.parameters__item}>
+      }} className={s.parameters__filter}>
+        <div className={s.parameters__filter_item}>
           <span>Color</span>
-          <div className={s.parameters__color_checkbox}>
+          <div className={s.parameters__filter_color}>
             {checkBoxes.colorFilter.map(item => (
               <Checkbox type={'color'} key={item.value} value={item.value}
                         background={item.background} />
             ))}
           </div>
         </div>
-        <div className={s.parameters__item}>
+        <div className={s.parameters__filter_item}>
           <span>Shape</span>
-          <div className={s.parameters__shape_checkbox}>
+          <div className={s.parameters__filter_shape}>
             {checkBoxes.shapeFilter.map(item => (
               <Checkbox type={'shape'} key={item.value} name={item.name}
                         value={item.value} />
@@ -138,9 +137,9 @@ const FiltersBlock: React.FC<IProps> = ({
           </div>
         </div>
 
-        <div className={s.parameters__item}>
+        <div className={s.parameters__filter_item}>
           <span>Size</span>
-          <div className={s.parameters__size_checkbox}>
+          <div className={s.parameters__filter_size}>
             {checkBoxes.sizeFilter.map(item => (
               <Checkbox type={'size'} value={item.value}
                         width={item.width} key={item.value}
@@ -148,19 +147,20 @@ const FiltersBlock: React.FC<IProps> = ({
             ))}
           </div>
         </div>
-        <div className={s.parameters__fav}>
+        <form onChange={(e) => console.log(e.target)}
+              className={s.parameters__filter_item}>
           Favorites
-          <label  className={s.checkbox__container}>
-            <input onChange={(e)=> setFav(e.target.checked)} type='checkbox' className={s.checkbox__input} />
-            <span className={s.checkbox__checkmark_fav} />
-          </label>
-        </div>
+          <Checkbox value={'fav'} type={'fav'} />
+        </form>
       </form>
       <Select onChange={setSort}
               options={options} title={'Sort By'} />
-      <button onClick={reset}>Reset</button>
+      <div className={s.parameters__sort}>
+        <Slider onChange={setYearValue} value={yearValue} />
+        <Slider onChange={setYearValue} value={yearValue} />
+        <button className={s.parameters__sort_button} onClick={reset}>Reset</button>
 
-      <Slider onChange={setYearValue} value={yearValue} />
+      </div>
     </div>
   );
 };

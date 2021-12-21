@@ -1,3 +1,5 @@
+@import "src/style-dev/vars";
+
 .checkbox {
   &__container {
     position: relative;
@@ -17,13 +19,13 @@
       }
 
       &_shape {
-        fill: blue;
+        fill: $red;
       }
     }
 
     &:checked ~ .checkbox__checkmark_fav {
-      width: 100px;
-      height: 100px;
+      background-image: url("../../../images/filters/assets/fav.png");
+
     }
   }
 
@@ -43,12 +45,21 @@
     }
 
     &_shape {
-      fill: red;
+      fill: #8C8C8C;
       position: absolute;
       top: 0;
       left: 0;
       width: 30px;
       height: 30px;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    &_fav{
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background-image: url("../../../images/filters/assets/notfav.png");
+      background-size: cover;
       transition: 0.2s;
       cursor: pointer;
     }
