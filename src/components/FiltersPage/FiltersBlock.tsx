@@ -190,10 +190,10 @@ const FiltersBlock: React.FC<IProps> = ({
                   max={2020} />
           <Slider onChange={setCountValue} value={countValue} min={1} max={12} />
         </div>
-        <ResetButton rangeValue={{
+        <ResetButton resetSliders={{
           year: setYearValue,
           count: setCountValue,
-        }} />
+        }} resetFilters={setFilter} />
       </div>
     </div>
   );

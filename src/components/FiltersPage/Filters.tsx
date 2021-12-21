@@ -5,6 +5,7 @@ import FiltersBlock from './FiltersBlock';
 import { ITypes, ISliderValue } from '../../types/ITypes';
 import Input from '../UI/input/Input';
 import { FavContext } from '../../context';
+import Modal from '../UI/modal/Modal';
 
 interface IProps {
   data: ITypes[];
@@ -60,15 +61,15 @@ const Filters: React.FC<IProps> = ({ data }) => {
   }, [countValue, filterByYear]);
 
   const sortCard = useMemo(() => {
-    if (selectType==='normal') return [...filterByCount].sort((a, b) => a[select].localeCompare(b[select]));
-    if (selectType==='reverse') return [...filterByCount].sort((a, b) => b[select].localeCompare(a[select]));
+    if (selectType === 'normal') return [...filterByCount].sort((a, b) => a[select].localeCompare(b[select]));
+    if (selectType === 'reverse') return [...filterByCount].sort((a, b) => b[select].localeCompare(a[select]));
     return filterByCount;
   }, [select, selectType, filterByCount]);
 
 
   return (
     <div>
-      <span>Таск не доделан, если можете, то проверьте  пожалуйста на 1 день позже</span>
+      <Modal/>
       <header className={s.header}>
         <span className={s.header__title}>Filters</span>
         <FiltersBlock
@@ -85,7 +86,7 @@ const Filters: React.FC<IProps> = ({ data }) => {
                onChange={setSearchQuery} />
         {sortCard.length
           ? sortCard.map((card, index) => (
-            <Card key={index} value={fav} onChange={setFav} card={card} />))
+            <Card value={fav} key={index} onChange={setFav} card={card} />))
           : <span>Not Found</span>
         }
       </div>
