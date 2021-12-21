@@ -24,13 +24,23 @@ const Card: React.FC<IProps> = React.memo(({
                                              value,
                                            }) => {
   const { isFav, setIsFav } = useContext(FavContext);
+  const setFavCards = (checked: Boolean, num: string) => {
+    const cardIndex = parseInt(num) - 1;
+    if (checked) return setIsFav([...isFav, cardIndex]);
+    return setIsFav(isFav.filter((card) => {
+      return card !== cardIndex;
+    }));
+  };
+
   return (
-    <div  className={s.card}>
-      <input type={'checkbox'} className={s.card__fav}
-             onChange={(e) => {
-               if (e.target.checked) return setIsFav([...isFav, num]);
-               else return setIsFav([isFav].filter(() => !isFav.includes(num)));
-             }} />
+    <div className={s.card}>
+      <label>
+        <input type={'checkbox'} className={s.card__checkbox}
+               onChange={(e) => {
+                 setFavCards(e.target.checked, num);
+               }} />
+        <span className={s.card__fav} />
+      </label>
       <span className={s.card__title}>{name}</span>
       <img className={s.card__img}
            src={require(`../../images/filters/assets/toys/${num}.png`).default}

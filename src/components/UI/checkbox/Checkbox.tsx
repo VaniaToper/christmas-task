@@ -8,6 +8,8 @@ interface IProps {
   type: string
   width?: string
   name?: string
+  onChange?: React.Dispatch<React.SetStateAction<boolean>>;
+
 }
 
 const Checkbox: React.FC<IProps> = ({
@@ -16,11 +18,13 @@ const Checkbox: React.FC<IProps> = ({
                                       background,
                                       width,
                                       name,
+                                      onChange,
                                     }) => {
 
   return (
     <label className={s.checkbox__container}>
-      <input defaultChecked={type !== 'fav'} value={value} type='checkbox'
+      <input onChange={(e) => onChange ? onChange(e.target.checked) : undefined}
+             defaultChecked={type !== 'fav'} value={value} type='checkbox'
              className={s.checkbox__input} />
       {type === 'color' && <span className={s.checkbox__checkmark_color}
                                  style={{ background: background }} />}

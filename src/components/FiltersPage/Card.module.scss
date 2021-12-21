@@ -12,7 +12,12 @@
   border-radius: 21px;
   font-family: 'Poppins', sans-serif;
   color: white;
-
+  &__checkbox{
+    display: none;
+    &:checked ~ .card__fav{
+      background-image: url("../../images/filters/like.png");
+    }
+  }
   &__fav {
     position: absolute;
     top: 0;
@@ -22,13 +27,12 @@
     height: 40px;
     border-radius: 4px;
     background-color: #FFD600;
-    background-image: url("http://localhost:3000/images/filters/unlike.png");
+    background-image: url("../../images/filters/unlike.png");
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: center center;
-    &:checked{
-      background-image: url("http://localhost:3000/images/filters/like.png");
-    }
+    cursor: pointer;
+    transition: 0.2s;
   }
 
   &__title {
@@ -50,7 +54,8 @@
     line-height: 24px;
   }
 }
-.card::before:hover{
+
+.card::before:hover {
   cursor: pointer;
   background-color: #fff;
   width: 100px;

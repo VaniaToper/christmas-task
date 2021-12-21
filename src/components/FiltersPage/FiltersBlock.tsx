@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import s from './FiltersBlock.module.scss';
 import Checkbox from '../UI/checkbox/Checkbox';
-import Button from '../UI/button/baseButton/Button';
 import Select from '../UI/select/Select';
 import Slider from '../UI/slider/Slider';
 import { IYearValue } from '../../types/ICard';
@@ -147,10 +146,9 @@ const FiltersBlock: React.FC<IProps> = ({
             ))}
           </div>
         </div>
-        <form onChange={(e) => console.log(e.target)}
-              className={s.parameters__filter_item}>
+        <form className={s.parameters__filter_item}>
           Favorites
-          <Checkbox value={'fav'} type={'fav'} />
+          <Checkbox onChange={setFav} value={'fav'} type={'fav'} />
         </form>
       </form>
       <Select onChange={setSort}
@@ -158,7 +156,8 @@ const FiltersBlock: React.FC<IProps> = ({
       <div className={s.parameters__sort}>
         <Slider onChange={setYearValue} value={yearValue} />
         <Slider onChange={setYearValue} value={yearValue} />
-        <button className={s.parameters__sort_button} onClick={reset}>Reset</button>
+        <button className={s.parameters__sort_button} onClick={reset}>Reset
+        </button>
 
       </div>
     </div>

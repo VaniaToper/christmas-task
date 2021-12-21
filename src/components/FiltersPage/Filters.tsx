@@ -21,21 +21,33 @@ const Filters: React.FC<IProps> = ({ data }) => {
     max: 2010,
   });
   const { isFav, setIsFav } = useContext(FavContext);
-
-  // const favCards = useMemo(() => {
-  //   if (fav) return data = isFav
-  // }, [fav]);
+  const setFavorite = () => {
+    for (let i = 0; i < data.length; i++) {
+      data[i].favorite = false;
+    }
+    for (let i = 0; i < isFav.length; i++) {
+      data[isFav[i]].favorite = true;
+    }
+    return data;
+  };
+  const favCards = useMemo((): any => {
+    if (fav) {
+      setFavorite();
+      return data.filter(card => card.favorite);
+    }
+    return data;
+  }, [fav, data]);
   const filterCards = useMemo(() => {
-    return data.filter((card, index) => !filter.includes(card.color) && !filter.includes(card.shape) && !filter.includes(card.size));
-  }, [filter, data]);
+    return favCards.filter((card, index) => !filter.includes(card.color) && !filter.includes(card.shape) && !filter.includes(card.size));
+  }, [filter, favCards]);
 
   const searchCards = useMemo(() => {
     if (searchQuery) return filterCards.filter(card => card.name.toLowerCase().includes(searchQuery.toLowerCase()));
-    else return filterCards
+    else return filterCards;
   }, [searchQuery, filterCards]);
 
   const filterByYear = useMemo(() => {
-    return searchCards.filter(card => parseInt(card.year) >= yearValue.min);
+    return searchCards.filter(card => parseInt(card.year) >= 1940);
   }, [yearValue, searchCards]);
 
   const sortCard = useMemo(() => {
@@ -44,10 +56,8 @@ const Filters: React.FC<IProps> = ({ data }) => {
   }, [select, filterByYear]);
 
 
-
   return (
     <div>
-      {/*<Colorpicker />*/}
       <span>Таск не доделан, если можете, то проверьте  пожалуйста на 1 день позже</span>
       <header className={s.header}>
         <span className={s.header__title}>Filters</span>
