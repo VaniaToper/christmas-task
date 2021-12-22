@@ -20,4 +20,7 @@ export interface IOptions {
   id: string
   type: string
 }
+export interface ITree {
+  name: string
+}
 
