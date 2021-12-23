@@ -5,10 +5,11 @@ import { ITree } from '../../types/ITypes';
 import GameButton from '../UI/button/gameButton/GameButton';
 import { TreeContext } from '../../context';
 import BackgroundButton from '../UI/button/backgroundButton/BackgroundButton';
-import SnowButton from '../UI/button/snowButton/SnowButton';
+import ToggleButton from '../UI/button/toggleButton/ToggleButton';
 
 const Game = () => {
   const [isSnow, setIsSnow] = useState<boolean>(false);
+  const [isLights, setIsLights] = useState<boolean>(false);
   const [tree, setTree] = useState<string>('tree1');
   const [currentBackground, setCurrentBackground] = useState<string>('winter-bg1');
   const [treeButtons] = useState<ITree[]>([
@@ -56,6 +57,7 @@ const Game = () => {
       setCurrentBackground,
       isSnow,
       setIsSnow,
+      isLights,
     }}>
       <div className={s.game}>
         {treeButtons.map(button => (
@@ -64,7 +66,8 @@ const Game = () => {
         {backgroundButton.map(button => (
           <BackgroundButton key={button.name} background={button.name} />
         ))}
-        <SnowButton />
+        <ToggleButton name={'snowflake'} onClick={setIsSnow} value={isSnow}/>
+        <ToggleButton name={'snowflake'} onClick={setIsLights} value={isLights}/>
         <Picture isSnow={isSnow} background={tree} />
       </div>
     </TreeContext.Provider>

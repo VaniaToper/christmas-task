@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import s from './Picture.module.scss';
 import { TreeContext } from '../../context';
+import Lights from './Lights';
 
 interface IProps {
   background: string;
@@ -8,7 +9,7 @@ interface IProps {
 }
 
 const Picture: React.FC<IProps> = ({ background, isSnow }) => {
-  const { currentBackground, setCurrentBackground } = useContext(TreeContext);
+  const { currentBackground, isLights } = useContext(TreeContext);
   const createArray = (count: number) => {
     return new Array(count).fill(null);
   };
@@ -21,21 +22,9 @@ const Picture: React.FC<IProps> = ({ background, isSnow }) => {
              src={require(`../../images/game/${background}.png`).default}
              alt={'christmas tree'}
              className={s.picture__tree} />
-        <div className={`${s.picture__lights} ${s.picture__lights_top}`}>
-          {createArray(4).map((light, index) => (
-            <li key={index} />
-          ))}
-        </div>
-        <div className={`${s.picture__lights} ${s.picture__lights_medium}`}>
-          {createArray(6).map((light, index) => (
-            <li key={index} />
-          ))}
-        </div>
-        <div className={`${s.picture__lights} ${s.picture__lights_bottom}`}>
-          {createArray(8).map((light, index) => (
-            <li key={index} />
-          ))}
-        </div>
+        {isLights
+          ? <Lights top={4} mid={6} bot={8} />
+          : ''}
       </div>
       {isSnow
         ? createArray(200).map((snow, index) => (
