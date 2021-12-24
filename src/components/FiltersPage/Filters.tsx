@@ -6,6 +6,7 @@ import { ICards, ISliderValue } from '../../types/ITypes';
 import Input from '../UI/input/Input';
 import { FavContext } from '../../context';
 import Modal from '../UI/modal/Modal';
+import Header from '../header/Header';
 
 interface IProps {
   data: ICards[];
@@ -68,6 +69,7 @@ const Filters: React.FC<IProps> = ({ data }) => {
 
   return (
     <div>
+      <Header />
       <Modal/>
       <header className={s.header}>
         <span className={s.header__title}>Filters</span>

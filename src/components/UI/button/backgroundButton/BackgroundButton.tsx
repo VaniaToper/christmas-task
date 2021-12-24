@@ -13,7 +13,7 @@ const BackgroundButton: React.FC<IProps> = ({ background }) => {
   } = useContext(TreeContext);
   return (
     <button onClick={() => setCurrentBackground(background)}
-            className={s.background__button}
+            className={currentBackground === background ? `${s.background__button} ${s.background__button_active}` : s.background__button}
             style={{ backgroundImage: 'url(' + require(`../../../../images/game/${background}.jpg`).default + ')' }} />
   );
 };

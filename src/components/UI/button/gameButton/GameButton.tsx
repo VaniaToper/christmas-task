@@ -9,7 +9,7 @@ interface IProps {
 const GameButton: React.FC<IProps> = ({ backgroundTree }) => {
   const { tree, setTree } = useContext(TreeContext);
   return (
-    <button onClick={() => setTree(backgroundTree)} className={s.game__button}
+    <button onClick={() => setTree(backgroundTree)} className={tree === backgroundTree ? `${s.game__button} ${s.game__button_active}` : s.game__button}
             style={{ backgroundImage: 'url(' + require(`../../../../images/game/${backgroundTree}.png`).default + ')' }} />
   );
 };

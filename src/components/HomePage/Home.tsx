@@ -2,11 +2,13 @@ import React from 'react';
 import s from './Home.module.scss';
 import { Link } from 'react-router-dom';
 import button from '../UI/button/baseButton/Button.module.scss';
+import Header from '../header/Header';
 
 
 const Home: React.FC = () => {
   return (
     <div className={s.home}>
+      <Header />
       <div className={s.home__ground__wrapper}>
         <div className={`${s.home__ground_left} ${s.home__ground}`} />
         <div className={`${s.home__ground_right} ${s.home__ground}`} />

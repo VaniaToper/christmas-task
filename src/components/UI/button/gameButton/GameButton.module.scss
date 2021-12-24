@@ -1,5 +1,14 @@
-.game__button{
+@import "src/style-dev/vars";
+
+.game__button {
   width: 70px;
   height: 70px;
-  background-size: cover;
+  background-size: 50px;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  transition: 0.2s;
+  &_active {
+    background-color: $red;
+  }
 }

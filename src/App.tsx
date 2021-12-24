@@ -8,6 +8,7 @@ import data from './components/FiltersPage/data';
 import React, { useState } from 'react';
 import { FavContext } from './context';
 import Game from './components/GamePage/Game';
+import Header from './components/header/Header';
 
 const App: React.FC = () => {
   const [isFav, setIsFav] = useState([]);
