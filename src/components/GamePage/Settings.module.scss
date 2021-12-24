@@ -1,0 +1,25 @@
+.settings {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__tree {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  &__background {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .settings {
+    width: auto;
+  }
+}
