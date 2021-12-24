@@ -15,22 +15,29 @@ const Picture: React.FC<IProps> = ({ background, isSnow }) => {
   };
   return (
     <div
-      style={{ backgroundImage: 'url(' + require(`../../images/game/${currentBackground}.jpg`).default + ')' }}
-      className={s.picture}>
+      style={{
+        backgroundImage:
+          'url(' +
+          require(`../../images/game/${currentBackground}.jpg`).default +
+          ')',
+      }}
+      className={s.picture}
+    >
       <div className={s.picture__tree_wrapper}>
-        <img draggable={false}
-             src={require(`../../images/game/${background}.png`).default}
-             alt={'christmas tree'}
-             className={s.picture__tree} />
-        {isLights
-          ? <Lights top={4} mid={6} bot={8} />
-          : ''}
+        <img
+          draggable={false}
+          onMouseOver={() => console.log('asd')}
+          src={require(`../../images/game/${background}.png`).default}
+          alt={'christmas tree'}
+          className={s.picture__tree}
+        />
+        {isLights ? <Lights top={4} mid={6} bot={8} /> : ''}
       </div>
       {isSnow
         ? createArray(200).map((snow, index) => (
-          <div key={index} className={s.snowflake} />
-        )) : ''}
-
+            <div key={index} className={s.snowflake} />
+          ))
+        : ''}
     </div>
   );
 };

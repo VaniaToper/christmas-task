@@ -4,6 +4,9 @@
   position: relative;
   width: 90px;
   height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #efefef;
   border-radius: 10px;
   box-shadow: 0 0 4px 1px #e3e3e3;
@@ -30,12 +33,7 @@
     font-family:  "Carter One", cursive;
   }
   &__image{
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    position: absolute;
     width: 65px;
     height: 65px;
-
   }
 }
