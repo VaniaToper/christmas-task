@@ -7,11 +7,11 @@
   width: 90%;
   display: flex;
   justify-content: center;
-  border: 2px solid $red;
+  border: 3px solid $red;
   background-repeat: no-repeat;
   background-size: contain;
   overflow: hidden;
-
+  box-shadow: 0 0 4px 1px #cdcdcd;
   &__tree_wrapper {
     position: relative;
   }

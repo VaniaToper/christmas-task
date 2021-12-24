@@ -4,6 +4,8 @@ import Picture from './Picture';
 import { TreeContext } from '../../context';
 import Settings from './Settings';
 import Header from '../header/Header';
+import FavCards from './FavCards';
+import data from '../FiltersPage/data';
 
 const Game = () => {
   const [isSnow, setIsSnow] = useState<boolean>(false);
@@ -21,10 +23,11 @@ const Game = () => {
       isLights,
       setIsLights,
     }}>
-      <Header/>
+      <Header />
       <div className={s.game}>
-        <Settings/>
+        <Settings />
         <Picture isSnow={isSnow} background={tree} />
+        <FavCards data={data} />
       </div>
     </TreeContext.Provider>
   );
