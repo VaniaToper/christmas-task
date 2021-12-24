@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import s from './Checkbox.module.scss';
 import sprite from '../../../images/sprite.svg';
 
@@ -12,14 +12,14 @@ interface IProps {
 
 }
 
-const Checkbox: React.FC<IProps> = ({
-                                      type,
-                                      value,
-                                      background,
-                                      width,
-                                      name,
-                                      onChange,
-                                    }) => {
+const Checkbox: FC<IProps> = ({
+                                type,
+                                value,
+                                background,
+                                width,
+                                name,
+                                onChange,
+                              }) => {
 
   return (
     <label className={s.checkbox__container}>

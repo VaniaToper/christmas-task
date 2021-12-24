@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import s from './Select.module.scss';
 import { IOptions } from '../../../types/ITypes';
 
@@ -12,15 +12,15 @@ interface IProps {
   zIndex: string;
 }
 
-const Select: React.FC<IProps> = ({
-                                    title,
-                                    options,
-                                    onChange,
-                                    setType,
-                                    valueClose,
-                                    valueOpen,
-                                    zIndex,
-                                  }) => {
+const Select: FC<IProps> = ({
+  title,
+  options,
+  onChange,
+  setType,
+  valueClose,
+  valueOpen,
+  zIndex,
+}) => {
   return (
     <form style={{ zIndex: zIndex }}>
       <ul className={`${s.tickets_type__entrance} ${s.select}`}>

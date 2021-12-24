@@ -1,3 +1,9 @@
-import {createContext} from 'react';
-export const FavContext = createContext(null)
-export const TreeContext = createContext(null)
+import React, { createContext, Dispatch, SetStateAction } from 'react';
+
+interface IFavContext {
+  favCards: number[];
+  setFavCards: Dispatch<SetStateAction<number[]>>;
+}
+
+export const FavContext = createContext({} as IFavContext);
+export const TreeContext = createContext(null);

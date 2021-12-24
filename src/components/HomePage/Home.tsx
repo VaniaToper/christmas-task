@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import s from './Home.module.scss';
 import { Link } from 'react-router-dom';
 import button from '../UI/button/baseButton/Button.module.scss';
 import Header from '../header/Header';
 
 
-const Home: React.FC = () => {
+const Home:FC = () => {
   return (
     <div className={s.home}>
       <Header />

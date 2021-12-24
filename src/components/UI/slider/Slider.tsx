@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 import { ISliderValue } from '../../../types/ITypes';
@@ -10,7 +10,7 @@ interface IProps {
   max: number;
 }
 
-const Slider: React.FC<IProps> = ({ onChange, value, max, min }) => {
+const Slider: FC<IProps> = ({ onChange, value, max, min }) => {
   return (
     <InputRange onChange={e => onChange(e)} value={value}
                 maxValue={max}

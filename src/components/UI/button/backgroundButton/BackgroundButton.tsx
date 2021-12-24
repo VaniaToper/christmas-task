@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { FC, useContext } from 'react';
 import s from './BackgroundButton.module.scss';
 import { TreeContext } from '../../../../context';
 
@@ -6,7 +6,7 @@ interface IProps {
   background: string;
 }
 
-const BackgroundButton: React.FC<IProps> = ({ background }) => {
+const BackgroundButton: FC<IProps> = ({ background }) => {
   const {
     currentBackground,
     setCurrentBackground,

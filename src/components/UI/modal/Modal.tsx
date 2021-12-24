@@ -1,8 +1,8 @@
-import React, { useContext, useMemo, useState } from 'react';
+import React, { FC, useContext, useMemo, useState } from 'react';
 import s from './Modal.module.scss';
 import { FavContext } from '../../../context';
 
-const Modal = () => {
+const Modal:FC = () => {
   const [visibility, setVisibility] = useState<boolean>(false);
   const { isFav, setIsFav } = useContext(FavContext);
   const changeVisibility = useMemo(() => {

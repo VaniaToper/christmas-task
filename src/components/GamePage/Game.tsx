@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import s from './Game.module.scss';
 import Picture from './Picture';
 import { TreeContext } from '../../context';
-import Settings from './Settings';
 import Header from '../header/Header';
 
 const Game = () => {
@@ -23,7 +22,6 @@ const Game = () => {
     }}>
       <Header/>
       <div className={s.game}>
-        <Settings/>
         <Picture isSnow={isSnow} background={tree} />
       </div>
     </TreeContext.Provider>
