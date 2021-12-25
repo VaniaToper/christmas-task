@@ -1,10 +1,6 @@
-import React, { FC, useMemo, useState } from 'react';
+import React, { FC } from 'react';
 import s from './FiltersBlock.module.scss';
-import Checkbox from '../UI/checkbox/Checkbox';
-import Select from '../UI/select/Select';
-import Slider from '../UI/slider/Slider';
-import { IOptions, ISliderValue } from '../../types/ITypes';
-import ResetButton from '../UI/button/resetButton/ResetButton';
+import { ISliderValue } from '../../types/ITypes';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import FilterSelect from '../FilterSelect/FilterSelect';
 import FilterSlider from '../FilterSlider/FilterSlider';

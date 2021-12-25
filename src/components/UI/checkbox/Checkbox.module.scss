@@ -24,7 +24,7 @@
     }
 
     &:checked ~ .checkbox__checkmark_fav {
-      background-image: url("../../../images/filters/assets/fav.png");
+      background-image: url("../../../assets/filters/assets/fav.png");
 
     }
   }
@@ -58,7 +58,7 @@
       display: inline-block;
       width: 30px;
       height: 30px;
-      background-image: url("../../../images/filters/assets/notfav.png");
+      background-image: url("../../../assets/filters/assets/notfav.png");
       background-size: cover;
       transition: 0.2s;
       cursor: pointer;

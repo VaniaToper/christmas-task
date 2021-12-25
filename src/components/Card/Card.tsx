@@ -41,7 +41,7 @@ const Card: FC<IProps> = React.memo(
         <span className={s.card__title}>{name}</span>
         <img
           className={s.card__img}
-          src={require(`../../images/filters/assets/toys/${num}.png`).default}
+          src={require(`../../assets/filters/assets/toys/${num}.png`).default}
           alt={name}
         />
         <div className={s.card__info}>
