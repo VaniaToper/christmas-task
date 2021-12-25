@@ -2,7 +2,7 @@ import React, { FC, useContext, useMemo, useState } from 'react';
 import s from './Filters.module.scss';
 import Card from '../components/Card/Card';
 import FiltersBlock from '../components/FilterBlock/FiltersBlock';
-import { ICards, ISliderValue } from '../types/ITypes';
+import { ICards } from '../types/ITypes';
 import Input from '../components/UI/input/Input';
 import { FavContext } from '../context';
 import Modal from '../components/UI/modal/Modal';
