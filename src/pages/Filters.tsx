@@ -1,12 +1,12 @@
 import React, { FC, useContext, useMemo, useState } from 'react';
 import s from './Filters.module.scss';
-import Card from './Card';
-import FiltersBlock from './FiltersBlock';
-import { ICards, ISliderValue } from '../../types/ITypes';
-import Input from '../UI/input/Input';
-import { FavContext } from '../../context';
-import Modal from '../UI/modal/Modal';
-import Header from '../header/Header';
+import Card from '../components/Card/Card';
+import FiltersBlock from '../components/FilterBlock/FiltersBlock';
+import { ICards, ISliderValue } from '../types/ITypes';
+import Input from '../components/UI/input/Input';
+import { FavContext } from '../context';
+import Modal from '../components/UI/modal/Modal';
+import Header from '../components/Header/Header';
 
 interface IProps {
   data: ICards[];
@@ -18,11 +18,11 @@ const Filters: FC<IProps> = ({ data }) => {
   const [fav, setFav] = useState(false);
   const [filter, setFilter] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [countValue, setCountValue] = useState<ISliderValue>({
+  const [countValue, setCountValue] = useState<any>({
     min: 1,
     max: 12,
   });
-  const [yearValue, setYearValue] = useState<ISliderValue>({
+  const [yearValue, setYearValue] = useState<any>({
     min: 1940,
     max: 2020,
   });
@@ -78,16 +78,15 @@ const Filters: FC<IProps> = ({ data }) => {
 
   const sortCard = useMemo(() => {
     if (selectType === 'normal')
-      return [...filterByCount].sort((a, b) =>
+      return [...filterByCount].sort((a: any, b: any) =>
         a[select].localeCompare(b[select]),
       );
     if (selectType === 'reverse')
-      return [...filterByCount].sort((a, b) =>
+      return [...filterByCount].sort((a: any, b: any) =>
         b[select].localeCompare(a[select]),
       );
     return filterByCount;
   }, [select, selectType, filterByCount]);
-  debugger;
 
   return (
     <div>

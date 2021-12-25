@@ -4,21 +4,23 @@ import { ISliderValue } from '../../../../types/ITypes';
 
 interface IProps {
   resetSliders: {
-    year: React.Dispatch<React.SetStateAction<ISliderValue>>
-    count: React.Dispatch<React.SetStateAction<ISliderValue>>
+    year: React.Dispatch<React.SetStateAction<ISliderValue | number>>;
+    count: React.Dispatch<React.SetStateAction<ISliderValue | number>>;
   };
-  resetFilters: React.Dispatch<React.SetStateAction<string[]>>
+  resetFilters: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const ResetButton: FC<IProps> = ({ resetSliders, resetFilters }) => {
   const reset = () => {
     resetSliders.year({ min: 1940, max: 2020 });
     resetSliders.count({ min: 1, max: 12 });
-    resetFilters([])
+    resetFilters([]);
   };
 
   return (
-    <button className={s.reset__button} onClick={reset}>Reset</button>
+    <button className={s.reset__button} onClick={reset}>
+      Reset
+    </button>
   );
 };
 
