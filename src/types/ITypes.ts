@@ -10,17 +10,26 @@ export interface ICards {
 }
 
 export interface ISliderValue {
-  min: number,
-  max: number
+  min: number;
+  max: number;
 }
 
 export interface IOptions {
-  title: string,
-  value: string,
-  id: string
-  type: string
-}
-export interface ITree {
-  name: string
+  title: string;
+  value: string;
+  id: string;
+  type: string;
 }
 
+export interface ITree {
+  name: string;
+}
+
+export interface IToyOnTree {
+  pos: {
+    xPos: number;
+    yPos: number;
+  };
+  toyNumber: number;
+  id: number;
+}

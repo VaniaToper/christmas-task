@@ -1,0 +1,46 @@
+@import "../../style-dev/vars";
+
+.parameters {
+
+  &__filter {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &_item {
+      display: flex;
+      gap: 0 23px;
+      width: 100%;
+    }
+
+    &_color {
+      display: flex;
+      gap: 25px;
+    }
+
+    &_shape {
+      display: flex;
+      gap: 30px;
+    }
+
+    &_size {
+      display: flex;
+      gap: 30px;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .parameters__filter {
+    &:after {
+      content: '';
+      position: absolute;
+      right: -46px;
+      width: 2px;
+      height: 140px;
+      background: $darkRed;
+      border-radius: 55px;
+    }
+  }
+}

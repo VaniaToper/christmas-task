@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import s from './FavCards.module.scss';
-import { FavContext } from '../../context';
+import { FavContext, TreeContext } from '../../context';
 import { ICards } from '../../types/ITypes';
 
 interface IProps {
@@ -8,20 +8,26 @@ interface IProps {
 }
 
 const FavCards: React.FC<IProps> = ({ data }) => {
-  const [isDrag, setIsDrag] = useState<boolean>(false);
-  const [xPos, setXPos] = useState<number>(0);
-  const [yPos, setYPos] = useState<number>(0);
-  const [currentCard, setCurrentCard] = useState<number>(0);
   const { isFav } = useContext(FavContext);
+  const { isHoverTree, toysOnTree, setToysOnTree } = useContext(TreeContext);
   const createArray = (count: number) => {
     return new Array(count).fill(null);
   };
-  const setDragTrue = (e, num: number) => {
-    setXPos(e.pageX);
-    setYPos(e.pageY);
-    setIsDrag(false);
-    setCurrentCard(num);
+  const setToy = (e, num: number) => {
+    setToysOnTree([
+      ...toysOnTree,
+      {
+        pos: {
+          xPos: e.pageX,
+          yPos: e.pageY,
+        },
+        toyNumber: num,
+        id: Math.random() * 1000,
+      },
+    ]);
+    console.log(toysOnTree);
   };
+
   return (
     <div className={s.card__wrapper}>
       {isFav.length
@@ -42,9 +48,8 @@ const FavCards: React.FC<IProps> = ({ data }) => {
             <div key={index} className={s.card}>
               <div className={s.card__count}>{data[index].count}</div>
               <img
-                onDragStart={(e) => setIsDrag(true)}
                 onDragEnd={(e) => {
-                  setDragTrue(e, index);
+                  setToy(e, index);
                 }}
                 className={s.card__image}
                 src={
@@ -55,25 +60,28 @@ const FavCards: React.FC<IProps> = ({ data }) => {
               />
             </div>
           ))}
-
-      {isDrag ? (
-        ''
-      ) : (
+      {toysOnTree.map((toy) => (
         <img
-          style={{ position: 'absolute', top: `${yPos}px`, left: `${xPos}px` }}
-          onDragStart={(e) => setIsDrag(true)}
+          key={toy.id}
           onDragEnd={(e) => {
-            setDragTrue(e, currentCard);
+            console.log(e.pageX);
+            toy.pos.xPos = e.pageX;
+            toy.pos.yPos = e.pageY;
+            // setToy(e, toy.toyNumber);
           }}
-          draggable={true}
+          style={{
+            position: 'absolute',
+            top: `${toy.pos.yPos}px`,
+            left: `${toy.pos.xPos}px`,
+          }}
           className={s.card__image}
           src={
-            require(`../../images/filters/assets/toys/${data[currentCard].num}.png`)
+            require(`../../images/filters/assets/toys/${toy.toyNumber + 1}.png`)
               .default
           }
           alt="toy"
         />
-      )}
+      ))}
     </div>
   );
 };

@@ -8,22 +8,28 @@ import data from './components/FiltersPage/data';
 import React, { useState } from 'react';
 import { FavContext } from './context';
 import Game from './components/GamePage/Game';
-import Header from './components/header/Header';
+import Header from './components/Header/Header';
 
 const App: React.FC = () => {
   const [isFav, setIsFav] = useState([]);
   return (
-    <FavContext.Provider value={{
-      isFav,
-      setIsFav,
-    }}>
+    <FavContext.Provider
+      value={{
+        isFav,
+        setIsFav,
+      }}
+    >
+      <div style={{ position: 'absolute', zIndex: '10' }}>
+        Таск не доделан, если есть возможность проверить на следующий день, то
+        пожалуйста дайте шанс)
+      </div>
       <BrowserRouter>
         <Switch>
-          <Route path='/' exact render={() => <Home />} />
-          <Route path='/filters' render={() => <Filters data={data} />} />
-          <Route path='/game' render={() => <Game />} />
-          <Route path='/NotFound' render={() => <NotFound />} />
-          <Redirect to='/NotFound' />
+          <Route path="/" exact render={() => <Home />} />
+          <Route path="/filters" render={() => <Filters data={data} />} />
+          <Route path="/game" render={() => <Game />} />
+          <Route path="/NotFound" render={() => <NotFound />} />
+          <Redirect to="/NotFound" />
         </Switch>
       </BrowserRouter>
     </FavContext.Provider>

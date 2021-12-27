@@ -9,9 +9,25 @@ interface IProps {
 }
 
 const Picture: React.FC<IProps> = ({ background, isSnow }) => {
-  const { currentBackground, isLights } = useContext(TreeContext);
+  const { currentBackground, isLights, setIsHoverTree } =
+    useContext(TreeContext);
   const createArray = (count: number) => {
     return new Array(count).fill(null);
+  };
+  const dragEnter = (e: React.DragEvent<HTMLImageElement>) => {
+    e.preventDefault();
+  };
+  const dragLeave = (e: React.MouseEvent<HTMLImageElement>) => {
+    e.preventDefault();
+  };
+  const onDrop = (e: React.DragEvent<HTMLImageElement>) => {
+    e.preventDefault();
+
+    setIsHoverTree(true);
+  };
+  const onDropCapture = (e: React.DragEvent<HTMLImageElement>) => {
+    e.preventDefault();
+    setIsHoverTree(false);
   };
   return (
     <div
@@ -26,7 +42,11 @@ const Picture: React.FC<IProps> = ({ background, isSnow }) => {
       <div className={s.picture__tree_wrapper}>
         <img
           draggable={false}
-          onMouseOver={() => console.log('asd')}
+          onDrop={(e) => onDrop(e)}
+          onDropCapture={(e) => onDropCapture(e)}
+          onDragOver={(e) => e.preventDefault()}
+          onDragEnter={(e) => dragEnter(e)}
+          onMouseLeave={(e) => dragLeave(e)}
           src={require(`../../images/game/${background}.png`).default}
           alt={'christmas tree'}
           className={s.picture__tree}
