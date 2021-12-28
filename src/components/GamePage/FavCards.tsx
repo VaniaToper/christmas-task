@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import s from './FavCards.module.scss';
 import { FavContext, TreeContext } from '../../context';
 import { ICards } from '../../types/ITypes';
@@ -9,8 +9,7 @@ interface IProps {
 
 const FavCards: React.FC<IProps> = ({ data }) => {
   const { isFav } = useContext(FavContext);
-  const { isHoverTree, toysOnTree, setToysOnTree, toyPos, setToyPos } =
-    useContext(TreeContext);
+  const { isHoverTree, toysOnTree, setToysOnTree } = useContext(TreeContext);
   const createArray = (count: number) => {
     return new Array(count).fill(null);
   };
@@ -19,15 +18,12 @@ const FavCards: React.FC<IProps> = ({ data }) => {
       setToysOnTree([
         ...toysOnTree,
         {
+          pos: {
+            xPos: e.pageX,
+            yPos: e.pageY,
+          },
           toyNumber: num,
           id: Math.random() * 1000,
-        },
-      ]);
-      setToyPos([
-        ...toyPos,
-        {
-          xPos: e.pageX,
-          yPos: e.pageY,
         },
       ]);
     }
@@ -71,15 +67,16 @@ const FavCards: React.FC<IProps> = ({ data }) => {
           key={toy.id}
           onDragEnd={(e) => {
             if (isHoverTree) {
-              setToyPos([...toyPos, (toyPos[index].xPos = e.pageX)]);
-              setToyPos([...toyPos, (toyPos[index].yPos = e.pageY)]);
+              let copyToy = [...toysOnTree];
+              copyToy[index].pos.yPos = e.pageY;
+              copyToy[index].pos.xPos = e.pageX;
+              setToysOnTree(copyToy);
             }
-            console.log(toyPos);
           }}
           style={{
             position: 'absolute',
-            left: `${toyPos[index].xPos}px`,
-            top: `${toyPos[index].yPos}px`,
+            left: `${toy.pos.xPos}px`,
+            top: `${toy.pos.yPos}px`,
           }}
           className={s.card__image}
           src={

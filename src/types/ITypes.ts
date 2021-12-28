@@ -26,11 +26,10 @@ export interface ITree {
 }
 
 export interface IToyOnTree {
+  pos: {
+    xPos: number;
+    yPos: number;
+  };
   toyNumber: number;
   id: number;
-}
-
-export interface IToyPos {
-  xPos: number;
-  yPos: number;
 }

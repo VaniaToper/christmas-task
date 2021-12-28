@@ -6,11 +6,10 @@ import Settings from './Settings';
 import Header from '../Header/Header';
 import FavCards from './FavCards';
 import data from '../FiltersPage/data';
-import { IToyOnTree, IToyPos } from '../../types/ITypes';
+import { IToyOnTree } from '../../types/ITypes';
 
 const Game = () => {
   const [isSnow, setIsSnow] = useState<boolean>(false);
-  const [toyPos, setToyPos] = useState<IToyPos[]>([]);
   const [toysOnTree, setToysOnTree] = useState<IToyOnTree[]>([]);
   const [isHoverTree, setIsHoverTree] = useState<boolean>(false);
   const [isLights, setIsLights] = useState<boolean>(false);
@@ -32,8 +31,6 @@ const Game = () => {
         setIsHoverTree,
         toysOnTree,
         setToysOnTree,
-        toyPos,
-        setToyPos,
       }}
     >
       <Header />
