@@ -9,22 +9,28 @@ interface IProps {
 
 const FavCards: React.FC<IProps> = ({ data }) => {
   const { isFav } = useContext(FavContext);
-  const { isHoverTree, toysOnTree, setToysOnTree } = useContext(TreeContext);
+  const { isHoverTree, toysOnTree, setToysOnTree, toyPos, setToyPos } =
+    useContext(TreeContext);
   const createArray = (count: number) => {
     return new Array(count).fill(null);
   };
   const setToy = (e, num: number) => {
-    setToysOnTree([
-      ...toysOnTree,
-      {
-        pos: {
+    if (isHoverTree) {
+      setToysOnTree([
+        ...toysOnTree,
+        {
+          toyNumber: num,
+          id: Math.random() * 1000,
+        },
+      ]);
+      setToyPos([
+        ...toyPos,
+        {
           xPos: e.pageX,
           yPos: e.pageY,
         },
-        toyNumber: num,
-        id: Math.random() * 1000,
-      },
-    ]);
+      ]);
+    }
     console.log(toysOnTree);
   };
 
@@ -60,19 +66,20 @@ const FavCards: React.FC<IProps> = ({ data }) => {
               />
             </div>
           ))}
-      {toysOnTree.map((toy) => (
+      {toysOnTree.map((toy, index) => (
         <img
           key={toy.id}
           onDragEnd={(e) => {
-            console.log(e.pageX);
-            toy.pos.xPos = e.pageX;
-            toy.pos.yPos = e.pageY;
-            // setToy(e, toy.toyNumber);
+            if (isHoverTree) {
+              setToyPos([...toyPos, (toyPos[index].xPos = e.pageX)]);
+              setToyPos([...toyPos, (toyPos[index].yPos = e.pageY)]);
+            }
+            console.log(toyPos);
           }}
           style={{
             position: 'absolute',
-            top: `${toy.pos.yPos}px`,
-            left: `${toy.pos.xPos}px`,
+            left: `${toyPos[index].xPos}px`,
+            top: `${toyPos[index].yPos}px`,
           }}
           className={s.card__image}
           src={

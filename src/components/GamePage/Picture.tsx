@@ -18,16 +18,15 @@ const Picture: React.FC<IProps> = ({ background, isSnow }) => {
     e.preventDefault();
   };
   const dragLeave = (e: React.MouseEvent<HTMLImageElement>) => {
+    setIsHoverTree(false);
     e.preventDefault();
   };
   const onDrop = (e: React.DragEvent<HTMLImageElement>) => {
     e.preventDefault();
-
     setIsHoverTree(true);
   };
   const onDropCapture = (e: React.DragEvent<HTMLImageElement>) => {
     e.preventDefault();
-    setIsHoverTree(false);
   };
   return (
     <div
