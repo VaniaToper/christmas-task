@@ -9,6 +9,7 @@ interface IProps {
 
 const FavCards: React.FC<IProps> = ({ data }) => {
   const [cards, setCards] = useState<ICards[]>(data);
+  const [isHide, setIsHide] = useState<boolean[]>([]);
   const { isFav } = useContext(FavContext);
   const { isHoverTree, toysOnTree, setToysOnTree } = useContext(TreeContext);
   const createArray = (count: number) => {
@@ -27,18 +28,21 @@ const FavCards: React.FC<IProps> = ({ data }) => {
           id: Math.random() * 1000,
         },
       ]);
+      let copyCards = [...cards];
+      const count = parseInt(copyCards[num].count) - 1;
+      copyCards[num].count = count.toString();
+      setCards(copyCards);
     }
-    let copyCards = [...cards];
-    const count = parseInt(copyCards[num].count) - 1;
-    copyCards[num].count = count.toString();
-    setCards(copyCards);
+    let copyIsHide = [...isHide];
+    copyIsHide[num] = parseInt(cards[num].count) < 1;
+    setIsHide(copyIsHide);
   };
 
   return (
     <div className={s.card__wrapper}>
       {isFav.length
         ? isFav.map((card, index) => (
-            <div className={s.card}>
+            <div className={!isHide[index] ? s.card : s.card__hide}>
               <div className={s.card__count}>{cards[card].count}</div>
               <img
                 className={s.card__image}
@@ -54,7 +58,7 @@ const FavCards: React.FC<IProps> = ({ data }) => {
             </div>
           ))
         : createArray(20).map((card, index) => (
-            <div key={index} className={s.card}>
+            <div key={index} className={!isHide[index] ? s.card : s.card__hide}>
               <div className={s.card__count}>{cards[index].count}</div>
               <img
                 onDragEnd={(e) => {
@@ -88,6 +92,10 @@ const FavCards: React.FC<IProps> = ({ data }) => {
               const count = parseInt(copyCards[toy.toyNumber].count) + 1;
               copyCards[toy.toyNumber].count = count.toString();
               setCards(copyCards);
+              let copyIsHide = [...isHide];
+              copyIsHide[toy.toyNumber] =
+                parseInt(cards[toy.toyNumber].count) < 1;
+              setIsHide(copyIsHide);
             }
           }}
           style={{
