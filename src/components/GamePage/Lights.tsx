@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import s from './Lights.module.scss';
 
 interface IProps {
-  top:number
-  mid:number
-  bot:number
+  top: number;
+  mid: number;
+  bot: number;
 }
 
-const Lights: React.FC<IProps> = ({top,mid,bot}) => {
+const Lights: React.FC<IProps> = ({ top, mid, bot }) => {
   const createArray = (count: number) => {
     return new Array(count).fill(null);
   };
+
   return (
     <div>
       <div className={`${s.lights} ${s.lights_top}`}>

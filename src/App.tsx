@@ -19,10 +19,6 @@ const App: React.FC = () => {
         setIsFav,
       }}
     >
-      <div style={{ position: 'absolute', zIndex: '10' }}>
-        Таск не доделан, если есть возможность проверить на следующий день, то
-        пожалуйста дайте шанс)
-      </div>
       <BrowserRouter>
         <Switch>
           <Route path="/" exact render={() => <Home />} />
