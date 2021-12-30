@@ -15,16 +15,18 @@ const FavCards: React.FC<IProps> = ({ data }) => {
   const createArray = (count: number) => {
     return new Array(count).fill(null);
   };
-  const setToy = (e, num: number) => {
+  const setToy = (e, num: string, isFav: boolean) => {
+    console.log(num);
     if (isHoverTree) {
       setToysOnTree([
         ...toysOnTree,
         {
+          isFav: isFav,
           pos: {
             xPos: e.pageX,
             yPos: e.pageY,
           },
-          toyNumber: num,
+          toyNumber: parseInt(num),
           id: Math.random() * 1000,
         },
       ]);
@@ -43,11 +45,12 @@ const FavCards: React.FC<IProps> = ({ data }) => {
       {isFav.length
         ? isFav.map((card, index) => (
             <div className={!isHide[index] ? s.card : s.card__hide}>
-              <div className={s.card__count}>{cards[card].count}</div>
+              <div className={s.card__count}>{cards[isFav[index]].count}</div>
               <img
                 className={s.card__image}
                 onDragEnd={(e) => {
-                  setToy(e, index);
+                  setToy(e, isFav[index] + 1, true);
+                  console.log(isFav);
                 }}
                 src={
                   require(`../../images/filters/assets/toys/${cards[card].num}.png`)
@@ -62,7 +65,7 @@ const FavCards: React.FC<IProps> = ({ data }) => {
               <div className={s.card__count}>{cards[index].count}</div>
               <img
                 onDragEnd={(e) => {
-                  setToy(e, index);
+                  setToy(e, cards[index].num, false);
                 }}
                 className={s.card__image}
                 src={
@@ -105,7 +108,7 @@ const FavCards: React.FC<IProps> = ({ data }) => {
           }}
           className={s.card__image}
           src={
-            require(`../../images/filters/assets/toys/${toy.toyNumber + 1}.png`)
+            require(`../../images/filters/assets/toys/${toy.toyNumber}.png`)
               .default
           }
           alt="toy"

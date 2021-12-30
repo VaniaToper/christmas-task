@@ -26,6 +26,7 @@ export interface ITree {
 }
 
 export interface IToyOnTree {
+  isFav: boolean;
   pos: {
     xPos: number;
     yPos: number;
