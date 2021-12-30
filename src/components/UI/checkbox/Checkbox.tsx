@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { FC } from 'react';
 import s from './Checkbox.module.scss';
-import sprite from '../../../images/sprite.svg';
+import sprite from '../../../assets/sprite.svg';
 
 interface IProps {
   value: string;
@@ -11,7 +11,7 @@ interface IProps {
   onChange?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Checkbox: React.FC<IProps> = ({
+const Checkbox: FC<IProps> = ({
   type,
   value,
   background,
@@ -35,10 +35,7 @@ const Checkbox: React.FC<IProps> = ({
         />
       )}
       {(type === 'shape' || type === 'size') && (
-        <svg
-          onMouseEnter={() => console.log('bro')}
-          className={s.checkbox__checkmark_shape}
-        >
+        <svg className={s.checkbox__checkmark_shape}>
           <use
             style={{ transform: `scale(${width})` }}
             href={`${sprite}#${name}`}

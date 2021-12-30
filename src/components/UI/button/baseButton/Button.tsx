@@ -1,11 +1,11 @@
-import React, { ReactChild } from 'react';
+import React, { FC, ReactChild } from 'react';
 import s from './Button.module.scss';
 
 interface IProps {
   children?: ReactChild;
 }
 
-const Button: React.FC<IProps> = ({ children }) => {
+const Button: FC<IProps> = ({ children }) => {
   return (
     <button className={s.Button}>
       {children}

@@ -1,22 +1,24 @@
-import React, { useContext, useMemo, useState } from 'react';
+import React, { FC, useContext, useMemo, useState } from 'react';
 import s from './Modal.module.scss';
-import { FavContext } from '../../../context';
+import { FavoriteContext } from '../../../context';
 
-const Modal = () => {
+const Modal: FC = () => {
   const [visibility, setVisibility] = useState<boolean>(false);
-  const { isFav, setIsFav } = useContext(FavContext);
+  const { favoriteCards, setFavoriteCards } = useContext(FavoriteContext);
   const changeVisibility = useMemo(() => {
-    if (isFav.length > 20) {
+    if (favoriteCards.length > 20) {
       setVisibility(true);
-      return isFav.pop();
+      return favoriteCards.pop();
     }
     return setVisibility(false);
-  }, [isFav]);
+  }, [favoriteCards]);
   return (
-    <div className={visibility ? s.modal : s.modal__hidden}
-         onClick={() => setVisibility(false)}>
+    <div
+      className={visibility ? s.modal : s.modal__hidden}
+      onClick={() => setVisibility(false)}
+    >
       <div className={s.modal__content}>
-        <span>To much favorite cards (maximum 20)</span>
+        <span>To much favoriteorite cards (maximum 20)</span>
       </div>
     </div>
   );

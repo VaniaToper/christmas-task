@@ -1,56 +1,56 @@
 import React, { useContext, useState } from 'react';
-import s from './FavCards.module.scss';
-import { FavContext, TreeContext } from '../../context';
-import { ICards } from '../../types/ITypes';
+import s from './FavoriteCards.module.scss';
+import { FavoriteContext, TreeContext } from '../../context';
+import { ICards, IToyOnTree } from '../../types/ITypes';
 
 interface IProps {
   data: ICards[];
 }
 
-const FavCards: React.FC<IProps> = ({ data }) => {
+const FavoriteCards: React.FC<IProps> = ({ data }) => {
   const [cards, setCards] = useState<ICards[]>(data);
   const [isHide, setIsHide] = useState<boolean[]>([]);
-  const { isFav } = useContext(FavContext);
+  const { favoriteCards } = useContext(FavoriteContext);
   const { isHoverTree, toysOnTree, setToysOnTree } = useContext(TreeContext);
   const createArray = (count: number) => {
     return new Array(count).fill(null);
   };
-  const setToy = (e, num: string, isFav: boolean) => {
+  const setToy = (e: React.DragEvent<HTMLImageElement>, num: number) => {
     if (isHoverTree) {
       setToysOnTree([
         ...toysOnTree,
         {
-          isFav: isFav,
           pos: {
             xPos: e.pageX,
             yPos: e.pageY,
           },
-          toyNumber: parseInt(num),
+          toyNumber: num,
           id: Math.random() * 1000,
         },
       ]);
-      let copyCards = [...cards];
-      const count = parseInt(copyCards[parseInt(num) - 1].count) - 1;
-      copyCards[parseInt(num) - 1].count = count.toString();
+      const copyCards = [...cards];
+      const count = parseInt(copyCards[num - 1].count) - 1;
+      copyCards[num - 1].count = count.toString();
       setCards(copyCards);
     }
-    let copyIsHide = [...isHide];
-    copyIsHide[parseInt(num) - 1] =
-      parseInt(cards[parseInt(num) - 1].count) < 1;
+    const copyIsHide = [...isHide];
+    copyIsHide[num - 1] = parseInt(cards[num - 1].count) < 1;
     setIsHide(copyIsHide);
   };
 
   return (
     <div className={s.card__wrapper}>
-      {isFav.length
-        ? isFav.map((card, index) => (
+      {favoriteCards.length
+        ? favoriteCards.map((card, index) => (
             <div className={!isHide[index] ? s.card : s.card__hide}>
-              <div className={s.card__count}>{cards[isFav[index]].count}</div>
+              <div className={s.card__count}>
+                {cards[favoriteCards[index]].count}
+              </div>
               <img
                 className={s.card__image}
                 onDragEnd={(e) => {
-                  setToy(e, isFav[index] + 1, true);
-                  console.log(isFav);
+                  setToy(e, favoriteCards[index] + 1);
+                  console.log(favoriteCards);
                 }}
                 src={
                   require(`../../images/filters/assets/toys/${cards[card].num}.png`)
@@ -65,7 +65,7 @@ const FavCards: React.FC<IProps> = ({ data }) => {
               <div className={s.card__count}>{cards[index].count}</div>
               <img
                 onDragEnd={(e) => {
-                  setToy(e, cards[index].num, false);
+                  setToy(e, parseInt(cards[index].num));
                 }}
                 className={s.card__image}
                 src={
@@ -76,26 +76,26 @@ const FavCards: React.FC<IProps> = ({ data }) => {
               />
             </div>
           ))}
-      {toysOnTree.map((toy, index) => (
+      {toysOnTree.map((toy: IToyOnTree, index: number) => (
         <img
           key={toy.id}
           onDragEnd={(e) => {
             if (isHoverTree) {
-              let copyToy = [...toysOnTree];
+              const copyToy = [...toysOnTree];
               copyToy[index].pos.yPos = e.pageY;
               copyToy[index].pos.xPos = e.pageX;
               setToysOnTree(copyToy);
             } else {
               setToysOnTree(
-                [...toysOnTree].filter((toy) => {
-                  return toy !== toysOnTree[index];
+                [...toysOnTree].filter((treeToy) => {
+                  return treeToy !== toysOnTree[index];
                 }),
               );
-              let copyCards = [...cards];
+              const copyCards = [...cards];
               const count = parseInt(copyCards[toy.toyNumber].count) + 1;
               copyCards[toy.toyNumber].count = count.toString();
               setCards(copyCards);
-              let copyIsHide = [...isHide];
+              const copyIsHide = [...isHide];
               copyIsHide[toy.toyNumber] =
                 parseInt(cards[toy.toyNumber].count) < 1;
               setIsHide(copyIsHide);
@@ -118,4 +118,4 @@ const FavCards: React.FC<IProps> = ({ data }) => {
   );
 };
 
-export default FavCards;
+export default FavoriteCards;

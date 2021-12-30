@@ -1,3 +1,5 @@
-import {createContext} from 'react';
-export const FavContext = createContext(null)
-export const TreeContext = createContext(null)
+import { createContext } from 'react';
+import { IFavoriteContext, ITreeContext } from '../types/ITypes';
+
+export const FavoriteContext = createContext({} as IFavoriteContext);
+export const TreeContext = createContext({} as ITreeContext);
