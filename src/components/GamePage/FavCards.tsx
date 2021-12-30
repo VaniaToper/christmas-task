@@ -16,7 +16,6 @@ const FavCards: React.FC<IProps> = ({ data }) => {
     return new Array(count).fill(null);
   };
   const setToy = (e, num: string, isFav: boolean) => {
-    console.log(num);
     if (isHoverTree) {
       setToysOnTree([
         ...toysOnTree,
@@ -31,12 +30,13 @@ const FavCards: React.FC<IProps> = ({ data }) => {
         },
       ]);
       let copyCards = [...cards];
-      const count = parseInt(copyCards[num].count) - 1;
-      copyCards[num].count = count.toString();
+      const count = parseInt(copyCards[parseInt(num) - 1].count) - 1;
+      copyCards[parseInt(num) - 1].count = count.toString();
       setCards(copyCards);
     }
     let copyIsHide = [...isHide];
-    copyIsHide[num] = parseInt(cards[num].count) < 1;
+    copyIsHide[parseInt(num) - 1] =
+      parseInt(cards[parseInt(num) - 1].count) < 1;
     setIsHide(copyIsHide);
   };
 
