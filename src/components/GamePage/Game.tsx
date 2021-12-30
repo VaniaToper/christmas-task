@@ -7,6 +7,7 @@ import Header from '../Header/Header';
 import FavCards from './FavCards';
 import data from '../FiltersPage/data';
 import { IToyOnTree } from '../../types/ITypes';
+import sprite from '../../images/sprite.svg';
 
 const Game = () => {
   const [isSnow, setIsSnow] = useState<boolean>(false);

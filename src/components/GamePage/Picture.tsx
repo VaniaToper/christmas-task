@@ -14,18 +14,18 @@ const Picture: React.FC<IProps> = ({ background, isSnow }) => {
   const createArray = (count: number) => {
     return new Array(count).fill(null);
   };
-  const dragEnter = (e: React.DragEvent<HTMLImageElement>) => {
+  const dragEnter = (e: React.DragEvent<HTMLMapElement>) => {
     e.preventDefault();
   };
-  const dragLeave = (e: React.MouseEvent<HTMLImageElement>) => {
+  const dragLeave = (e: React.MouseEvent<HTMLMapElement>) => {
     setIsHoverTree(false);
     e.preventDefault();
   };
-  const onDrop = (e: React.DragEvent<HTMLImageElement>) => {
+  const onDrop = (e: React.DragEvent<HTMLMapElement>) => {
     e.preventDefault();
     setIsHoverTree(true);
   };
-  const onDropCapture = (e: React.DragEvent<HTMLImageElement>) => {
+  const onDropCapture = (e: React.DragEvent<HTMLMapElement>) => {
     e.preventDefault();
   };
   return (
@@ -41,16 +41,23 @@ const Picture: React.FC<IProps> = ({ background, isSnow }) => {
       <div className={s.picture__tree_wrapper}>
         <img
           draggable={false}
+          src={require(`../../images/game/${background}.png`).default}
+          alt={'christmas tree'}
+          className={s.picture__tree}
+          useMap="#workmap"
+        />
+        {isLights ? <Lights top={4} mid={6} bot={8} /> : ''}
+        <map
           onDrop={(e) => onDrop(e)}
           onDropCapture={(e) => onDropCapture(e)}
           onDragOver={(e) => e.preventDefault()}
           onDragEnter={(e) => dragEnter(e)}
           onMouseLeave={(e) => dragLeave(e)}
-          src={require(`../../images/game/${background}.png`).default}
-          alt={'christmas tree'}
-          className={s.picture__tree}
-        />
-        {isLights ? <Lights top={4} mid={6} bot={8} /> : ''}
+          name="workmap"
+          onClick={() => console.log('click')}
+        >
+          <area shape="poly" coords="50,450, 260,0, 430,450" alt="tree" />
+        </map>
       </div>
       {isSnow
         ? createArray(200).map((snow, index) => (
