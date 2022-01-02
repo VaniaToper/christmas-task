@@ -26,8 +26,8 @@ const Filters: FC<IProps> = ({ data }) => {
     min: 1940,
     max: 2020,
   });
-  const { favoriteCards, setFavoriteCards } = useContext(FavoriteContext);
-  const setIsFavorite = () => {
+  const { favoriteCards } = useContext(FavoriteContext);
+  const filterFavoriteCards = () => {
     for (let i = 0; i < data.length; i++) {
       data[i].favorite = false;
     }
@@ -38,14 +38,14 @@ const Filters: FC<IProps> = ({ data }) => {
   };
   const getFavoriteCards = useMemo(() => {
     if (favorite) {
-      setIsFavorite();
+      filterFavoriteCards();
       return data.filter((card) => card.favorite);
     }
     return data;
   }, [favorite, data]);
   const filterCards = useMemo(() => {
     return getFavoriteCards.filter(
-      (card, index) =>
+      (card) =>
         !filter.includes(card.color) &&
         !filter.includes(card.shape) &&
         !filter.includes(card.size),

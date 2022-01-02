@@ -18,7 +18,7 @@ const Modal: FC = () => {
       onClick={() => setVisibility(false)}
     >
       <div className={s.modal__content}>
-        <span>To much favoriteorite cards (maximum 20)</span>
+        <span>To much favorite cards (maximum 20)</span>
       </div>
     </div>
   );

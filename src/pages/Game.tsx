@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import s from './Game.module.scss';
-import Picture from './Picture';
-import { TreeContext } from '../../context';
-import Settings from './Settings';
-import Header from '../Header/Header';
-import FavoriteCards from './FavoriteCards';
+import Picture from '../components/Picture/Picture';
+import { TreeContext } from '../context';
+import Settings from '../components/Settings/Settings';
+import Header from '../components/Header/Header';
+import FavoriteCards from '../components/FavoriteCards/FavoriteCards';
 import data from '../FiltersPage/data';
-import { IToyOnTree } from '../../types/ITypes';
+import { IToyOnTree } from '../types/ITypes';
 
 const Game = () => {
   const [isSnow, setIsSnow] = useState<boolean>(false);
