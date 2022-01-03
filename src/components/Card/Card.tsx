@@ -3,14 +3,6 @@ import s from './Card.module.scss';
 import { ICards } from '../../types/ITypes';
 import { FavoriteContext } from '../../context';
 
-async function getImage(num: string) {
-  // import toyImage = require(`../../assets/filters/assets/toys/${num}.png`).default
-  const users: string = await import(
-    `../../assets/filters/assets/toys/${num}.png`
-  );
-  return users;
-}
-
 interface IProps {
   card: ICards;
   onChange: React.Dispatch<React.SetStateAction<boolean>>;
@@ -43,7 +35,11 @@ const Card: FC<IProps> = React.memo(
           <span className={s.card__fav} />
         </label>
         <span className={s.card__title}>{name}</span>
-        <img className={s.card__img} src={getImage(num)} alt={name} />
+        <img
+          className={s.card__img}
+          src={`./assets/filters/assets/toys/${num}.png`}
+          alt={name}
+        />
         <div className={s.card__info}>
           <div>Count: {count}</div>
           <div>Year: {year}</div>

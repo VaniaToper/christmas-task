@@ -1,4 +1,4 @@
-.background__button{
+.background__button {
   width: 60px;
   height: 60px;
   background-size: cover;
@@ -7,10 +7,9 @@
   filter: grayscale(0.9);
   opacity: 0.8;
   transition: 0.2s;
-  &_active{
+
+  &_active {
     opacity: 1;
-
     filter: grayscale(0);
-
   }
 }

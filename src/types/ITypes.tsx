@@ -8,9 +8,9 @@ export interface ICards {
   shape: string;
   color: string;
   size: string;
-  favorite: any;
+  favorite: boolean;
 
-  [key: string]: string;
+  // [key: string]: string;
 }
 
 export interface ISliderValue {

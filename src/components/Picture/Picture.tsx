@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import s from './Picture.module.scss';
 import { TreeContext } from '../../context';
 import Lights from '../Lights/Lights';
-
+import 'require-context';
 interface IProps {
   background: string;
   isSnow: boolean;
@@ -28,23 +28,21 @@ const Picture: React.FC<IProps> = ({ background, isSnow }) => {
   const onDropCapture = (e: React.DragEvent<HTMLMapElement>) => {
     e.preventDefault();
   };
+
   return (
     <div
       style={{
-        backgroundImage:
-          'url(' +
-          require(`../../images/game/${currentBackground}.jpg`).default +
-          ')',
+        backgroundImage: 'url(' + `/assets/game/${currentBackground}.jpg` + ')',
       }}
       className={s.picture}
     >
       <div className={s.picture__tree_wrapper}>
         <img
           draggable={false}
-          src={require(`../../images/game/${background}.png`).default}
+          src={`/assets/game/${background}.png`}
           alt={'christmas tree'}
           className={s.picture__tree}
-          useMap="#workmap"
+          useMap="#workMap"
         />
         {isLights ? <Lights top={4} mid={6} bot={8} /> : ''}
         <map
@@ -53,7 +51,7 @@ const Picture: React.FC<IProps> = ({ background, isSnow }) => {
           onDragOver={(e) => e.preventDefault()}
           onDragEnter={(e) => dragEnter(e)}
           onMouseLeave={(e) => dragLeave(e)}
-          name="workmap"
+          name="workMap"
           onClick={() => console.log('click')}
         >
           <area shape="poly" coords="50,450, 260,0, 430,450" alt="tree" />

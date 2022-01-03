@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import s from './FavoriteCards.module.scss';
 import { FavoriteContext, TreeContext } from '../../context';
 import { ICards, IToyOnTree } from '../../types/ITypes';
+import ToyCard from '../ToyCard/ToyCard';
 
 interface IProps {
   data: ICards[];
@@ -42,23 +43,15 @@ const FavoriteCards: React.FC<IProps> = ({ data }) => {
     <div className={s.card__wrapper}>
       {favoriteCards.length
         ? favoriteCards.map((card, index) => (
-            <div className={!isHide[index] ? s.card : s.card__hide}>
-              <div className={s.card__count}>
-                {cards[favoriteCards[index]].count}
-              </div>
-              <img
-                className={s.card__image}
-                onDragEnd={(e) => {
-                  setToy(e, favoriteCards[index] + 1);
-                  console.log(favoriteCards);
-                }}
-                src={
-                  require(`../../images/filters/assets/toys/${cards[card].num}.png`)
-                    .default
-                }
-                alt="toy"
-              />
-            </div>
+            <ToyCard
+              cards={cards}
+              onDragEnd={setToy}
+              cardNum={card}
+              index={index}
+              isHide={isHide[index]}
+              count={cards[favoriteCards[index]].count}
+              key={index}
+            />
           ))
         : createArray(20).map((card, index) => (
             <div key={index} className={!isHide[index] ? s.card : s.card__hide}>
@@ -68,10 +61,7 @@ const FavoriteCards: React.FC<IProps> = ({ data }) => {
                   setToy(e, parseInt(cards[index].num));
                 }}
                 className={s.card__image}
-                src={
-                  require(`../../images/filters/assets/toys/${cards[index].num}.png`)
-                    .default
-                }
+                src={`/assets/filters/assets/toys/${cards[index].num}.png`}
                 alt="toy"
               />
             </div>
@@ -107,10 +97,7 @@ const FavoriteCards: React.FC<IProps> = ({ data }) => {
             top: `${toy.pos.yPos}px`,
           }}
           className={s.card__image}
-          src={
-            require(`../../images/filters/assets/toys/${toy.toyNumber}.png`)
-              .default
-          }
+          src={`/assets/filters/assets/toys/${toy.toyNumber}.png`}
           alt="toy"
         />
       ))}

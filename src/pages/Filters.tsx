@@ -78,11 +78,11 @@ const Filters: FC<IProps> = ({ data }) => {
 
   const sortCard = useMemo(() => {
     if (selectType === 'normal')
-      return [...filterByCount].sort((a, b) =>
+      return [...filterByCount].sort((a: any, b: any) =>
         a[select].localeCompare(b[select]),
       );
     if (selectType === 'reverse')
-      return [...filterByCount].sort((a, b) =>
+      return [...filterByCount].sort((a: any, b: any) =>
         b[select].localeCompare(a[select]),
       );
     return filterByCount;

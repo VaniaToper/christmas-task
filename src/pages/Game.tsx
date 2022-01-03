@@ -5,7 +5,7 @@ import { TreeContext } from '../context';
 import Settings from '../components/Settings/Settings';
 import Header from '../components/Header/Header';
 import FavoriteCards from '../components/FavoriteCards/FavoriteCards';
-import data from '../FiltersPage/data';
+import data from '../assets/data';
 import { IToyOnTree } from '../types/ITypes';
 
 const Game = () => {

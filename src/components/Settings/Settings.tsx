@@ -6,9 +6,7 @@ import ToggleButton from '../UI/button/toggleButton/ToggleButton';
 import { TreeContext } from '../../context';
 import s from './Settings.module.scss';
 
-interface IProps {}
-
-const Settings: React.FC<IProps> = () => {
+const Settings: React.FC = () => {
   const { isSnow, setIsSnow } = useContext(TreeContext);
   const { isLights, setIsLights } = useContext(TreeContext);
   const [treeButtons] = useState<ITree[]>([

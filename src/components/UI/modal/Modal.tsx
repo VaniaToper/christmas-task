@@ -4,7 +4,7 @@ import { FavoriteContext } from '../../../context';
 
 const Modal: FC = () => {
   const [visibility, setVisibility] = useState<boolean>(false);
-  const { favoriteCards, setFavoriteCards } = useContext(FavoriteContext);
+  const { favoriteCards } = useContext(FavoriteContext);
   const changeVisibility = useMemo(() => {
     if (favoriteCards.length > 20) {
       setVisibility(true);

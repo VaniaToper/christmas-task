@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 import { ISliderValue } from '../../../types/ITypes';
