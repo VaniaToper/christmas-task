@@ -130,7 +130,7 @@ const FilterCheckbox: FC<IProps> = ({ setFilter, filter, setFav }) => {
         </div>
       </div>
       <div className={s.parameters__filter_item}>
-        Favorites
+        <span>Favorites</span>
         <Checkbox onChange={setFav} value={'fav'} type={'fav'} />
       </div>
     </form>

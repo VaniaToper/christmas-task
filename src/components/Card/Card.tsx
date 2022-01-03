@@ -12,6 +12,7 @@ interface IProps {
 const Card: FC<IProps> = React.memo(
   ({ card: { count, year, shape, color, size, favorite, name, num } }) => {
     const { favoriteCards, setFavoriteCards } = useContext(FavoriteContext);
+
     const setFavoriteCardsArray = (checked: boolean, number: string) => {
       const cardIndex = parseInt(number) - 1;
       if (checked) return setFavoriteCards([...favoriteCards, cardIndex]);

@@ -1,4 +1,4 @@
-import './style-dev/nullstyle.scss';
+import './style-dev/reset.scss';
 import './App.module.scss';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import NotFound from './pages/NotFound';

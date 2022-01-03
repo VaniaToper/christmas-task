@@ -88,7 +88,7 @@ const Filters: FC<IProps> = ({ data }) => {
     return filterByCount;
   }, [select, selectType, filterByCount]);
 
-  debugger;
+  // debugger;
   return (
     <div>
       <Header />
