@@ -65,6 +65,17 @@ const Settings: React.FC = () => {
   ]);
   return (
     <div className={s.settings}>
+      <div className={s.settings__toggle}>
+        <ToggleButton name={'snowflake'} onClick={setIsSnow} value={isSnow} />
+        {lightsButton.map((button) => (
+          <ToggleButton
+            name={button.name}
+            key={button.name}
+            onClick={setIsLights}
+            value={isLights}
+          />
+        ))}
+      </div>
       <div className={s.settings__tree}>
         {treeButtons.map((button) => (
           <GameButton key={button.name} backgroundTree={button.name} />
@@ -75,15 +86,6 @@ const Settings: React.FC = () => {
           <BackgroundButton key={button.name} background={button.name} />
         ))}
       </div>
-      <ToggleButton name={'snowflake'} onClick={setIsSnow} value={isSnow} />
-      {lightsButton.map((button) => (
-        <ToggleButton
-          name={button.name}
-          key={button.name}
-          onClick={setIsLights}
-          value={isLights}
-        />
-      ))}
     </div>
   );
 };

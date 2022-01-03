@@ -10,8 +10,10 @@
   border: 3px solid $red;
   background-repeat: no-repeat;
   background-size: contain;
+  background-position: center 0;
   overflow: hidden;
   box-shadow: 0 0 4px 1px #cdcdcd;
+
   &__tree_wrapper {
     position: relative;
   }
@@ -19,8 +21,6 @@
   &__tree {
     width: 100%;
   }
-
-
 }
 
 @media screen and (min-width: 768px) {
@@ -73,7 +73,6 @@
   }
 }
 
-/* added small blur every 6 snowflakes*/
 .snowflake:nth-child(6n) {
   filter: blur(1px);
 }
