@@ -56,11 +56,12 @@ const FavoriteCards: FC<IProps> = ({ data }) => {
         }),
       );
       const copyCards = [...cards];
-      const count = parseInt(copyCards[toy.toyNumber].count) + 1;
-      copyCards[toy.toyNumber].count = count.toString();
+      const count = parseInt(copyCards[toy.toyNumber - 1].count) + 1;
+      copyCards[toy.toyNumber - 1].count = count.toString();
       setCards(copyCards);
       const copyIsHide = [...isHide];
-      copyIsHide[toy.toyNumber] = parseInt(cards[toy.toyNumber].count) < 1;
+      copyIsHide[toy.toyNumber - 1] =
+        parseInt(cards[toy.toyNumber - 1].count) < 1;
       setIsHide(copyIsHide);
     }
   };
