@@ -1,12 +1,12 @@
 import React, { FC, useContext, useMemo, useState } from 'react';
 import s from './Filters.module.scss';
-import Card from '../components/Card/Card';
-import FiltersBlock from '../components/FilterBlock/FiltersBlock';
-import { ICards } from '../types/ITypes';
-import Input from '../components/UI/input/Input';
-import { FavoriteContext } from '../context';
-import Modal from '../components/UI/modal/Modal';
-import Header from '../components/Header/Header';
+import Card from '../../components/Card/Card';
+import FiltersBlock from '../../components/FilterBlock/FiltersBlock';
+import { ICards, ISliderValue, TKeysCards } from '../../types/ITypes';
+import Input from '../../components/UI/input/Input';
+import { FavoriteContext } from '../../context';
+import Modal from '../../components/UI/modal/Modal';
+import Header from '../../components/Header/Header';
 
 interface IProps {
   data: ICards[];
@@ -18,11 +18,11 @@ const Filters: FC<IProps> = ({ data }) => {
   const [favorite, setFavorite] = useState(false);
   const [filter, setFilter] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [countValue, setCountValue] = useState<any>({
+  const [countValue, setCountValue] = useState<ISliderValue>({
     min: 1,
     max: 12,
   });
-  const [yearValue, setYearValue] = useState<any>({
+  const [yearValue, setYearValue] = useState<ISliderValue>({
     min: 1940,
     max: 2020,
   });
@@ -78,17 +78,16 @@ const Filters: FC<IProps> = ({ data }) => {
 
   const sortCard = useMemo(() => {
     if (selectType === 'normal')
-      return [...filterByCount].sort((a: any, b: any) =>
-        a[select].localeCompare(b[select]),
+      return [...filterByCount].sort((a, b) =>
+        a[select as TKeysCards].localeCompare(b[select as TKeysCards]),
       );
     if (selectType === 'reverse')
-      return [...filterByCount].sort((a: any, b: any) =>
-        b[select].localeCompare(a[select]),
+      return [...filterByCount].sort((a, b) =>
+        b[select as TKeysCards].localeCompare(a[select as TKeysCards]),
       );
     return filterByCount;
   }, [select, selectType, filterByCount]);
 
-  // debugger;
   return (
     <div>
       <Header />

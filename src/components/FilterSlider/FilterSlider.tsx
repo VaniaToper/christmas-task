@@ -5,10 +5,10 @@ import ResetButton from '../UI/button/resetButton/ResetButton';
 import { ISliderValue } from '../../types/ITypes';
 
 interface IProps {
-  setYearValue: React.Dispatch<React.SetStateAction<ISliderValue | number>>;
+  setYearValue: (e: ISliderValue) => void;
   countValue: ISliderValue;
   yearValue: ISliderValue;
-  setCountValue: React.Dispatch<React.SetStateAction<ISliderValue | number>>;
+  setCountValue: (e: ISliderValue) => void;
   setFilter: React.Dispatch<React.SetStateAction<string[]>>;
 }
 

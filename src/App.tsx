@@ -1,13 +1,13 @@
 import './style-dev/reset.scss';
 import './App.module.scss';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import NotFound from './pages/NotFound';
-import Home from './pages/Home';
-import Filters from './pages/Filters';
+import NotFound from './pages/NotFound/NotFound';
+import Home from './pages/Home/Home';
+import Filters from './pages/Filters/Filters';
 import data from './assets/data';
 import React, { FC, useState } from 'react';
 import { FavoriteContext } from './context';
-import Game from './pages/Game';
+import Game from './pages/Game/Game';
 
 const App: FC = () => {
   const [favoriteCards, setFavoriteCards] = useState<number[]>([]);

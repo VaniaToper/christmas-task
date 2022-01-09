@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, Dispatch, SetStateAction } from 'react';
 import s from './FiltersBlock.module.scss';
 import { ISliderValue } from '../../types/ITypes';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
@@ -7,14 +7,14 @@ import FilterSlider from '../FilterSlider/FilterSlider';
 
 interface IProps {
   filter: string[];
-  setFilter: React.Dispatch<React.SetStateAction<string[]>>;
-  setCountValue: React.Dispatch<React.SetStateAction<ISliderValue | number>>;
+  setFilter: Dispatch<SetStateAction<string[]>>;
+  setCountValue: (e: ISliderValue) => void;
   countValue: ISliderValue;
   yearValue: ISliderValue;
-  setYearValue: React.Dispatch<React.SetStateAction<ISliderValue | number>>;
-  setFav: React.Dispatch<React.SetStateAction<boolean>>;
-  setSort: React.Dispatch<React.SetStateAction<string>>;
-  setSelectType: React.Dispatch<React.SetStateAction<string>>;
+  setYearValue: (e: ISliderValue) => void;
+  setFav: Dispatch<SetStateAction<boolean>>;
+  setSort: Dispatch<SetStateAction<string>>;
+  setSelectType: Dispatch<SetStateAction<string>>;
 }
 
 const FiltersBlock: FC<IProps> = ({

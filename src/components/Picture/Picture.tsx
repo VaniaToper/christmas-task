@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import s from './Picture.module.scss';
 import { TreeContext } from '../../context';
 import Lights from '../Lights/Lights';
-import 'require-context';
 
 interface IProps {
   background: string;

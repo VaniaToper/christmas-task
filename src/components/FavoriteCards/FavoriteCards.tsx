@@ -1,4 +1,4 @@
-import React, { useContext, useState, DragEvent, FC } from 'react';
+import React, { DragEvent, FC, useContext, useState } from 'react';
 import s from './FavoriteCards.module.scss';
 import { FavoriteContext, TreeContext } from '../../context';
 import { ICards, IToyOnTree } from '../../types/ITypes';

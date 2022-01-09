@@ -10,8 +10,17 @@ export interface ICards {
   size: string;
   favorite: boolean;
 
-  // [key: string]: string;
+  [key: string]: string | boolean;
 }
+
+export type TKeysCards =
+  | 'num'
+  | 'name'
+  | 'count'
+  | 'year'
+  | 'shape'
+  | 'color'
+  | 'size';
 
 export interface ISliderValue {
   min: number;
