@@ -1,0 +1,55 @@
+@import "../../../../style-dev/vars";
+
+.Button {
+  position: relative;
+  font-size: 20px;
+  padding: 0.5em 2em;
+  border-radius: 20px;
+  font-family: 'Carter One', cursive;
+  color: $red;
+  cursor: pointer;
+  transition: 0.2s;
+  background: white;
+  border: 3px solid white;
+  z-index: 1;
+
+  &:hover {
+    border: 3px solid white;
+    background: none;
+    color: white;
+  }
+
+  &:active {
+    color: $red;
+
+    &:before {
+      background: white;
+      border: 3px solid white;
+      transform: scale(1);
+    }
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    border-radius: 15px;
+    bottom: 0;
+    left: 0;
+    transform: scale(0.5);
+    right: 0;
+    top: 0;
+    z-index: -1;
+    background: none;
+    transition: 0.09s ease-in;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .Button{
+    font-size: 25px;
+  }
+}
+
+
+
+
