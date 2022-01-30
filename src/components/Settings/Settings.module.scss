@@ -1,0 +1,35 @@
+.settings {
+  height: 100%;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 20px;
+  margin: 10px;
+
+  &__tree {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  &__background {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  &__toggle {
+    display: flex;
+    justify-content: end;
+    gap: 5px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .settings {
+    width: 550px;
+  }
+}
+

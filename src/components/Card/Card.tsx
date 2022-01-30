@@ -1,7 +1,7 @@
-import React, { FC, useContext, useState } from 'react';
+import React, { FC, useContext } from 'react';
 import s from './Card.module.scss';
 import { ICards } from '../../types/ITypes';
-import { FavContext } from '../../context';
+import { FavoriteContext } from '../../context';
 
 interface IProps {
   card: ICards;
@@ -10,17 +10,14 @@ interface IProps {
 }
 
 const Card: FC<IProps> = React.memo(
-  ({
-    card: { count, year, shape, color, size, favorite, name, num },
-    onChange,
-    value,
-  }) => {
-    const { favCards, setFavCards } = useContext(FavContext);
-    const setFavoriteCards = (checked: boolean, number: string) => {
+  ({ card: { count, year, shape, color, size, favorite, name, num } }) => {
+    const { favoriteCards, setFavoriteCards } = useContext(FavoriteContext);
+
+    const setFavoriteCardsArray = (checked: boolean, number: string) => {
       const cardIndex = parseInt(number) - 1;
-      if (checked) return setFavCards([...favCards, cardIndex]);
-      return setFavCards(
-        favCards.filter((index: number) => {
+      if (checked) return setFavoriteCards([...favoriteCards, cardIndex]);
+      return setFavoriteCards(
+        favoriteCards.filter((index: number) => {
           return index !== cardIndex;
         }),
       );
@@ -33,7 +30,7 @@ const Card: FC<IProps> = React.memo(
             type={'checkbox'}
             className={s.card__checkbox}
             onChange={(e) => {
-              setFavoriteCards(e.target.checked, num);
+              setFavoriteCardsArray(e.target.checked, num);
             }}
           />
           <span className={s.card__fav} />
@@ -41,7 +38,7 @@ const Card: FC<IProps> = React.memo(
         <span className={s.card__title}>{name}</span>
         <img
           className={s.card__img}
-          src={require(`../../assets/filters/assets/toys/${num}.png`).default}
+          src={`./assets/filters/assets/toys/${num}.png`}
           alt={name}
         />
         <div className={s.card__info}>

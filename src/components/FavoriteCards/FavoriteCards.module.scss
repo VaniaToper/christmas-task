@@ -1,0 +1,53 @@
+@import "../../style-dev/vars";
+
+.card {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #efefef;
+  border-radius: 10px;
+  box-shadow: 0 0 4px 1px #e3e3e3;
+
+  &__wrapper {
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 10px;
+  }
+
+  &__count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    color: white;
+    background: $red;
+    font-family: "Carter One", cursive;
+  }
+
+  &__image {
+    width: 65px;
+    height: 65px;
+  }
+
+  &__hide {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .card__wrapper {
+    width: 550px;
+  }
+}

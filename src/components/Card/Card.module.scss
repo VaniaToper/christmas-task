@@ -15,7 +15,7 @@
   &__checkbox{
     display: none;
     &:checked ~ .card__fav{
-      background-image: url("../../assets/filters/like.png");
+      background-image: url("../../assets/filters/assets/like.png");
     }
   }
   &__fav {
@@ -27,7 +27,7 @@
     height: 40px;
     border-radius: 4px;
     background-color: #FFD600;
-    background-image: url("../../assets/filters/unlike.png");
+    background-image: url("../../assets/filters/assets/unlike.png");
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: center center;

@@ -1,0 +1,34 @@
+@import "../../style-dev/vars";
+
+.parameters {
+  &__sort {
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    gap: 15px;
+
+    &_sliders {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .parameters {
+    &__sort {
+      position: relative;
+
+      &:after {
+        content: '';
+        position: absolute;
+        left: -46px;
+        width: 2px;
+        height: 140px;
+        background: $darkRed;
+        border-radius: 55px;
+      }
+    }
+  }
+}

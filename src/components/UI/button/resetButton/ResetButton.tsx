@@ -4,8 +4,8 @@ import { ISliderValue } from '../../../../types/ITypes';
 
 interface IProps {
   resetSliders: {
-    year: React.Dispatch<React.SetStateAction<ISliderValue | number>>;
-    count: React.Dispatch<React.SetStateAction<ISliderValue | number>>;
+    year: (e: ISliderValue) => void;
+    count: (e: ISliderValue) => void;
   };
   resetFilters: React.Dispatch<React.SetStateAction<string[]>>;
 }

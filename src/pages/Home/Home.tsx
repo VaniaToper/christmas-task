@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import s from './Home.module.scss';
 import { Link } from 'react-router-dom';
-import button from '../components/UI/button/baseButton/Button.module.scss';
-import Header from '../components/Header/Header';
+import button from '../../components/UI/button/baseButton/Button.module.scss';
+import Header from '../../components/Header/Header';
 
 const Home: FC = () => {
   return (

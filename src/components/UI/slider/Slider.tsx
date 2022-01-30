@@ -1,10 +1,10 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 import { ISliderValue } from '../../../types/ITypes';
 
 interface IProps {
-  onChange: React.Dispatch<React.SetStateAction<ISliderValue | number>>;
+  onChange: (e: ISliderValue) => void;
   value: ISliderValue;
   min: number;
   max: number;
@@ -13,7 +13,10 @@ interface IProps {
 const Slider: FC<IProps> = ({ onChange, value, max, min }) => {
   return (
     <InputRange
-      onChange={(e) => onChange(e)}
+      onChange={(e: any) => {
+        onChange(e);
+        console.log(typeof e);
+      }}
       value={value}
       maxValue={max}
       minValue={min}

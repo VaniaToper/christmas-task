@@ -19,6 +19,30 @@ const Checkbox: FC<IProps> = ({
   name,
   onChange,
 }) => {
+  const renderInnerMarkup = () => {
+    switch (type) {
+      case 'color':
+        return (
+          <span
+            className={s.checkbox__checkmark_color}
+            style={{ background: background }}
+          />
+        );
+      case 'shape':
+      case 'size':
+        return (
+          <svg className={s.checkbox__checkmark_shape}>
+            <use
+              style={{ transform: `scale(${width})` }}
+              href={`${sprite}#${name}`}
+            />
+          </svg>
+        );
+      case 'fav':
+        return <span className={s.checkbox__checkmark_fav} />;
+    }
+  };
+
   return (
     <label className={s.checkbox__container}>
       <input
@@ -28,21 +52,7 @@ const Checkbox: FC<IProps> = ({
         type="checkbox"
         className={s.checkbox__input}
       />
-      {type === 'color' && (
-        <span
-          className={s.checkbox__checkmark_color}
-          style={{ background: background }}
-        />
-      )}
-      {(type === 'shape' || type === 'size') && (
-        <svg className={s.checkbox__checkmark_shape}>
-          <use
-            style={{ transform: `scale(${width})` }}
-            href={`${sprite}#${name}`}
-          />
-        </svg>
-      )}
-      {type === 'fav' && <span className={s.checkbox__checkmark_fav} />}
+      {renderInnerMarkup()}
     </label>
   );
 };

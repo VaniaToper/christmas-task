@@ -1,31 +1,34 @@
-import './style-dev/nullstyle.scss';
+import './style-dev/reset.scss';
 import './App.module.scss';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import NotFound from './pages/NotFound';
-import Home from './pages/Home';
-import Filters from './pages/Filters';
+import NotFound from './pages/NotFound/NotFound';
+import Home from './pages/Home/Home';
+import Filters from './pages/Filters/Filters';
 import data from './assets/data';
 import React, { FC, useState } from 'react';
-import { FavContext } from './context';
+import { FavoriteContext } from './context';
+import Game from './pages/Game/Game';
 
 const App: FC = () => {
-  const [favCards, setFavCards] = useState<number[]>([]);
+  const [favoriteCards, setFavoriteCards] = useState<number[]>([]);
+
   return (
-    <FavContext.Provider
+    <FavoriteContext.Provider
       value={{
-        favCards,
-        setFavCards,
+        favoriteCards,
+        setFavoriteCards,
       }}
     >
       <BrowserRouter>
         <Switch>
           <Route path="/" exact render={() => <Home />} />
           <Route path="/filters" render={() => <Filters data={data} />} />
+          <Route path="/game" render={() => <Game />} />
           <Route path="/NotFound" render={() => <NotFound />} />
           <Redirect to="/NotFound" />
         </Switch>
       </BrowserRouter>
-    </FavContext.Provider>
+    </FavoriteContext.Provider>
   );
 };
 

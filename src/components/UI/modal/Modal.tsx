@@ -1,17 +1,17 @@
 import React, { FC, useContext, useMemo, useState } from 'react';
 import s from './Modal.module.scss';
-import { FavContext } from '../../../context';
+import { FavoriteContext } from '../../../context';
 
 const Modal: FC = () => {
   const [visibility, setVisibility] = useState<boolean>(false);
-  const { favCards, setFavCards } = useContext(FavContext);
+  const { favoriteCards } = useContext(FavoriteContext);
   const changeVisibility = useMemo(() => {
-    if (favCards.length > 20) {
+    if (favoriteCards.length > 20) {
       setVisibility(true);
-      return favCards.pop();
+      return favoriteCards.pop();
     }
     return setVisibility(false);
-  }, [favCards]);
+  }, [favoriteCards]);
   return (
     <div
       className={visibility ? s.modal : s.modal__hidden}

@@ -1,0 +1,79 @@
+@import '../../style-dev/vars';
+
+.picture {
+  position: relative;
+  padding-top: 30%;
+  padding-bottom: 5%;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  border: 3px solid $red;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center 0;
+  overflow: hidden;
+  box-shadow: 0 0 4px 1px #cdcdcd;
+
+  &__tree_wrapper {
+    position: relative;
+  }
+
+  &__tree {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .picture {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .picture {
+    padding-top: 10%;
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .picture {
+    width: 30%;
+  }
+}
+
+
+.snowflake {
+  --size: 1vw;
+  width: var(--size);
+  height: var(--size);
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: -5vh;
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translate3d(var(--left-ini), 0, 0);
+  }
+  100% {
+    transform: translate3d(var(--left-end), 110vh, 0);
+  }
+}
+
+@for $i from 1 through 1001 {
+  .snowflake:nth-child(#{$i}) {
+    --size: #{random(5) * 0.2}vw;
+    --left-ini: #{random(20) - 10}vw;
+    --left-end: #{random(20) - 10}vw;
+    left: #{random(100)}vw;
+    animation: snowfall #{5 + random(10)}s linear infinite;
+    animation-delay: -#{random(10)}s;
+  }
+}
+
+.snowflake:nth-child(6n) {
+  filter: blur(1px);
+}
+
